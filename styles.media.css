@@ -893,7 +893,7 @@
     }
 
     .floating-btn, .chat-widget {
-        bottom: 100px !important;
+        bottom: 10px !important;
     }
 
     /* Small-screen header: show only logo, start button and hamburger */

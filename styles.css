@@ -142,9 +142,23 @@
             white-space: nowrap;
         }
 
+        /* small animation for the bullhorn icon in the notification bar */
+        .notification-bar i {
+            margin-inline-end: 8px;
+            display: inline-block;
+            animation: notifPulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes notifPulse {
+            0% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-3px) scale(1.02); }
+            100% { transform: translateY(0) scale(1); }
+        }
+
         .scrolling-text {
             display: inline-block;
-            animation: scrollText 15s linear infinite;
+            /* slower scroll for a more professional feel */
+            animation: scrollText 30s linear infinite;
             white-space: nowrap;
         }
 
@@ -492,14 +506,15 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
             color: white;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
         }
 
         .btn-outline {
@@ -611,6 +626,7 @@
         /* Hero Section */
         .hero {
             padding: 120px 0 80px;
+            margin-bottom: 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -625,6 +641,115 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        /* base entrance state for hero elements (will be animated to visible) */
+        .hero h1,
+        .hero p,
+        .hero button {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        /* layout for hero with illustration */
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .hero-illustration {
+            flex: 0 0 320px;
+            display: block;
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transform: translateY(10px) scale(0.995);
+            animation: fadeInLeft 0.9s ease both;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(18px) translateY(8px); }
+            to { opacity: 1; transform: translateX(0) translateY(0); }
+        }
+
+        /* Staggered entrance for hero elements */
+        .hero-content h1 { animation: fadeInUp 0.5s ease both; }
+        .hero-lead { animation: fadeInUp 0.65s ease both; }
+        .hero-subtitle { animation: fadeInUp 0.8s ease both; }
+        .hero-buttons { animation: fadeInUp 0.95s ease both; }
+
+        /* Emphasize primary hero button even more */
+        .btn-hero.btn-primary {
+            padding: 18px 44px;
+            font-size: 20px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
+            box-shadow: 0 10px 30px rgba(14, 45, 120, 0.18);
+            transform: translateZ(0);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .btn-hero.btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 18px 42px rgba(14, 45, 120, 0.22);
+        }
+
+        /* Make secondary outline lighter and subtler */
+        .btn-hero.btn-outline {
+            padding: 14px 34px;
+            border: 2px solid rgba(30,58,138,0.14);
+            color: rgba(30,58,138,0.95);
+            background: transparent;
+            box-shadow: none;
+            font-weight: 700;
+        }
+
+        .btn-hero.btn-outline:hover {
+            background: rgba(30,58,138,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Hide illustration on small screens */
+        @media (max-width: 900px) {
+            .hero-inner { flex-direction: column; gap: 18px; }
+            .hero-illustration { display: none; }
+        }
+
+        /* Respect reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-content, .hero-illustration, .hero-content h1, .hero-lead, .hero-subtitle, .hero-buttons {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+            }
+        }
+
+        /* Hero animations and lead copy */
+        .hero-content {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .hero-lead {
+            margin-top: 12px;
+            margin-bottom: 14px;
+            font-size: 18px;
+            color: var(--gray-600);
+            max-width: 760px;
+            text-align: center;
+            font-weight: 600;
+        }
+        /* increase line-height for hero paragraphs for better readability */
+        .hero p {
+            line-height: 1.8;
+        }
+
+        /* subtitle should be a bit lighter (gray-500) to clarify visual hierarchy */
+        .hero-subtitle {
+            color: #6b7280; /* gray-500 */
+            max-width: 760px;
+            text-align: center;
         }
 
         .hero h1 {
@@ -641,7 +766,7 @@
 
         .hero-subtitle {
             font-size: 18px;
-            color: var(--gray-600);
+            color: #6b7280; /* slightly lighter gray for better hierarchy */
             max-width: 700px;
             margin: 0 auto 24px;
             font-weight: 500;
@@ -662,6 +787,22 @@
             display: inline-block;
         }
 
+        /* gentle floating for the hero highlight */
+        @keyframes floatY {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        .hero-target {
+            animation: floatY 6s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .dark-mode .hero-target {
             background: rgba(59, 130, 246, 0.1);
             color: var(--primary);
@@ -680,16 +821,81 @@
             font-weight: 700;
         }
 
+        /* Make primary hero button slightly stronger and outline variant more subtle */
+        .btn-hero.btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(30,58,138,0.12);
+            border-radius: 12px;
+        }
+
+        .btn-hero.btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid rgba(30,58,138,0.12);
+            box-shadow: none;
+            border-radius: 12px;
+        }
+
+        .btn-hero.btn-outline:hover {
+            background: rgba(30,58,138,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Hero icon image shadow + hover lift + entrance animation */
+        /* applies to .hero-image if present, and mirrors to .hero-illustration for current markup */
+        .hero-image,
+        .hero-illustration {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
+            /* start invisible; entrance animation controlled below */
+            opacity: 0;
+        }
+
+        .hero-image:hover,
+        .hero-illustration:hover {
+            transform: translateY(-5px);
+        }
+
+        /* a slightly larger entrance animation for prominent hero elements */
+        @keyframes fadeInUpMore {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* apply staggered entrance animations to hero pieces */
+        .hero h1,
+        .hero p,
+        .hero-buttons,
+        .hero-image,
+        .hero-illustration {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUpMore 0.8s ease forwards;
+        }
+
+        .hero h1 { animation-delay: 0.2s; }
+        .hero p { animation-delay: 0.4s; }
+        .hero-buttons,
+        .hero .buttons { animation-delay: 0.6s; }
+        .hero-image,
+        .hero-illustration { animation-delay: 0.8s; }
+
         /* Stats Section */
         .stats-banner {
             background: white;
             border-radius: var(--border-radius-lg);
             padding: 32px;
             margin: -60px auto 80px;
-            max-width: 1000px;
+            /* allow wider container so 4 items fit comfortably */
+            max-width: 1200px;
             box-shadow: var(--shadow-xl);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* force 4 columns on wide screens, with flexible widths */
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 24px;
             text-align: center;
         }
@@ -838,6 +1044,18 @@
         /* Active Projects Section */
         .section {
             padding: 100px 0;
+            /* add breathing room above sections when stacked */
+            margin-top: 80px;
+        }
+
+        /* Increase vertical spacing between major sections for better visual rhythm */
+        .education-section,
+        .testimonials-section,
+        .trust-section,
+        .mid-cta,
+        .bottom-cta {
+            margin-top: 80px;
+            padding-top: 60px; /* inner spacing so section background has breathing room */
         }
 
         .section-header {
@@ -870,7 +1088,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 32px;
         }
 
@@ -1260,6 +1478,25 @@
             padding: 80px 0;
         }
 
+        /* Responsive fallbacks for stats banner columns */
+        @media (max-width: 1100px) {
+            .stats-banner {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .stats-banner {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-banner {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+
         .dark-mode .testimonials-section {
             background: var(--gray-800);
         }
@@ -1465,6 +1702,21 @@
             .faq-container { padding: 0 12px; }
             .faq-question { font-size: 15px; padding: 12px 14px; }
             .faq-answer { padding-left: 14px; padding-right: 14px; }
+
+            /* reduce large vertical spacing on small screens to avoid long gaps */
+            .section,
+            .education-section,
+            .testimonials-section,
+            .trust-section,
+            .mid-cta,
+            .bottom-cta {
+                margin-top: 40px;
+                padding-top: 32px;
+            }
+
+            footer {
+                padding-top: 80px;
+            }
         }
 
         /* Bottom CTA Section */
@@ -1507,7 +1759,8 @@
         footer {
             background: var(--gray-900);
             color: white;
-            padding: 80px 0 40px;
+            /* increase top padding so footer doesn't feel cramped */
+            padding: 120px 0 40px;
             margin-top: 80px;
         }
 

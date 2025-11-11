@@ -132,14 +132,45 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>استثمر في مشاريع حقيقية وحقق أرباحًا آمنة</h1>
-                <p class="hero-subtitle">منصة إقراض جماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة
-                </p>
-                <p class="hero-target">منصة إقراضك تربط المستثمرين برواد الأعمال لتوفير تمويل آمن ومربح للطرفين.</p>
-                <div class="hero-buttons">
-                    <a href="investor.html" class="btn btn-hero btn-primary">ابدأ الاستثمار الآن</a>
-                    <a href="#" class="btn btn-hero btn-outline" id="applyProjectBtn">قدّم مشروعك</a>
+            <div class="hero-inner">
+                <div class="hero-illustration" aria-hidden="true">
+                    <!-- Composite inline SVG: coin + small bar chart to suggest an active investment system -->
+                    <svg width="320" height="240" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#0ea5e9" />
+                                <stop offset="1" stop-color="#1e3a8a" />
+                            </linearGradient>
+                            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#10b981" stop-opacity="0.95" />
+                                <stop offset="1" stop-color="#059669" />
+                            </linearGradient>
+                        </defs>
+                        <rect x="0" y="0" width="320" height="240" rx="20" fill="url(#g1)" opacity="0.06" />
+                        <!-- coin -->
+                        <circle cx="220" cy="70" r="34" fill="url(#g2)" />
+                        <text x="220" y="78" font-size="18" font-weight="700" text-anchor="middle" fill="white">ريال</text>
+
+                        <!-- small bar chart to the left of the coin -->
+                        <g transform="translate(60,80)">
+                            <rect x="0" y="36" width="20" height="24" rx="4" fill="#c7ddf8" />
+                            <rect x="30" y="18" width="20" height="42" rx="4" fill="#7fbcf6" />
+                            <rect x="60" y="6" width="20" height="54" rx="4" fill="#1e3a8a" />
+                            <rect x="90" y="28" width="20" height="32" rx="4" fill="#0ea5e9" />
+                        </g>
+                        <!-- gentle hand stroke under elements to add context -->
+                        <path d="M40 170c28-32 78-42 118-32 32 8 56 26 86 32" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" fill="none" opacity="0.9" />
+                    </svg>
+                </div>
+                <div class="hero-content">
+                    <h1>استثمر في مشاريع حقيقية وحقق أرباحًا آمنة</h1>
+                    <p class="hero-lead">منصة تمويل رقمية تربط المستثمرين بالمشاريع الواعدة بطريقة آمنة وشفافة.</p>
+                    <p class="hero-subtitle">منصة إقراض جماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة</p>
+                    <p class="hero-target"><i class="fas fa-briefcase" aria-hidden="true" style="margin-inline-end:8px;"></i>ابدأ رحلتك الاستثمارية مع منصة إقراضك وتمتّع بعوائد مجزية وآمنة.</p>
+                    <div class="hero-buttons">
+                        <a href="investor.html" class="btn btn-hero btn-primary">ابدأ الاستثمار</a>
+                        <a href="#" class="btn btn-hero btn-outline" id="applyProjectBtn">قدّم مشروعك</a>
+                    </div>
                 </div>
             </div>
         </div>
