@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المستثمر - إقراضك</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-gradient-start: #1e3a8a;
+            --primary-gradient-end: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+            --profit-blue: #3b82f6;
+            --profit-green: #10b981;
+            --profit-gray: #94a3b8;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            font-family: 'Tajawal', sans-serif;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-active {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .dropdown-menu {
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: none;
+            padding: 0.5rem 0;
+            animation: slideDown 0.2s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8fafc;
+            color: var(--primary-gradient-end);
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        /* Enhanced Dashboard Cards */
+        .dashboard-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            width: 240px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-body {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0.5rem 0;
+            transition: all 1.5s ease-out;
+        }
+
+        .card-unit {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .investment-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .investment-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+
+        .investment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-gradient-start), var(--primary-gradient-end));
+        }
+
+        .investment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            border-color: #e2e8f0;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(59, 130, 246, 0.95);
+            color: white;
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .investment-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-tags {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 3;
+        }
+
+        .project-tag {
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tag-new {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .tag-funding {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .tag-completed {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+        }
+
+        .sector-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .sector-agricultural {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .sector-education {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        .sector-retail {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        }
+
+        .sector-food {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+        }
+
+        .sector-tech {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+        }
+
+        .sector-services {
+            background: linear-gradient(135deg, #c026d3, #a21caf);
+        }
+
+        .project-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            color: #0f172a;
+            margin: 0.25rem 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .sector-badge {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1e40af;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #93c5fd;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+
+        .return-percentage {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--success-color);
+            margin: 0.5rem 0;
+        }
+
+        .progress-section {
+            margin: 1.5rem 0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-percentage {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .progress-amount {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .progress-container {
+            background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--success-color));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .investment-card-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .btn-invest {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-invest.pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(59, 130, 246, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+            }
+        }
+
+        .btn-invest.completed {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            cursor: not-allowed;
+        }
+
+        .btn-details {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-details:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .profit-chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .portfolio-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .transaction-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .chat-section {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .chat-message {
+            max-width: 75%;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-received {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border: 1px solid #cbd5e1;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            color: #0f172a;
+        }
+
+        .message-sent {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+
+        .notification-panel {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 360px;
+            height: 100vh;
+            background: white;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.2);
+            z-index: 1050;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .notification-panel.show {
+            right: 0;
+        }
+
+        .notification-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s ease;
+        }
+
+        .notification-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            color: #0f172a;
+            margin: 2.5rem 0 2rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--primary-gradient-end);
+            font-weight: 800;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gradient-end));
+        }
+
+        .profit-summary {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+            margin: 2rem 0;
+        }
+
+        .profit-highlight {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .profit-highlight .text-success {
+            font-size: 1.3rem;
+        }
+
+        .portfolio-summary {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-gradient-end);
+        }
+
+        .transaction-row:nth-child(even) {
+            background-color: rgba(248, 250, 252, 0.5);
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-license {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .verified-badge {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Quick filters */
+        .quick-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            border-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .investment-cards-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dashboard-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0 fw-bold">
+                    <i class="fas fa-hand-holding-usd me-2"></i>
+                    إقراضك
+                </h3>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="position-relative">
+                        <button class="btn text-white position-relative" id="notificationsBtn">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                style="font-size: 0.7rem; padding: 0.35em 0.6em;">
+                                2
+                            </span>
+                            <!-- Dropdown notifications preview -->
+                            <div class="dropdown-menu position-absolute"
+                                style="right: 0; top: 100%; margin-top: 0.5rem; display: none; width: 320px;">
+                                <div class="p-3">
+                                    <h6 class="mb-2">آخر التنبيهات</h6>
+                                    <div class="small text-muted mb-2">اليوم، 15:30</div>
+                                    <p class="mb-1">تم تحويل أرباحك من مشروع مزرعة عضوية ذكية 💰.</p>
+                                    <div class="small text-muted mt-3">أمس، 11:20</div>
+                                    <p class="mb-0">مشروعك الاستثماري بلغ 85٪ من التمويل المطلوب 📈.</p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar">خ</div>
+                        <div class="text-end">
+                            <div class="fw-bold fs-5">خالد عبد الله</div>
+                            <div class="status-badge status-active">
+                                <i class="fas fa-circle"></i> مستثمر نشط
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> تعديل الملف
+                                    الشخصي</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-lock me-2"></i> تغيير كلمة المرور</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-landmark me-2"></i> ربط حساب بنكي</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-file-invoice-dollar me-2"></i> سجل
+                                    المعاملات المالية</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>
+                                    تسجيل الخروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section text-center">
+            <h2 class="text-primary mb-2">مرحبًا خالد 👋</h2>
+            <p class="text-muted fs-5 mb-3">يمكنك الآن متابعة استثماراتك الحالية، الاطلاع على العوائد، أو استكشاف فرص
+                تمويل جديدة.</p>
+            <div class="d-flex justify-content-center gap-3 mb-3">
+                <button class="btn btn-primary btn-lg px-4 pulse">
+                    <i class="fas fa-invest me-2"></i> استثمر الآن
+                </button>
+                <button class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="fas fa-chart-line me-2"></i> تتبع الأرباح
+                </button>
+            </div>
+            <p class="text-muted small mb-0">آخر تسجيل دخول: 10 نوفمبر 2025 – 3:45 PM</p>
+        </div>
+
+        <!-- Dashboard Overview -->
+        <div class="dashboard-cards-container">
+            <!-- Card 1: إجمالي رأس المال المستثمر -->
+            <div class="dashboard-card">
+                <div class="card-icon"
+                    style="background: linear-gradient(135deg, rgba(30, 58, 138, 0.1), rgba(30, 58, 138, 0.2)); color: #1e3a8a;">
+                    <i class="fas fa-sack-dollar"></i>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">إجمالي رأس المال المستثمر</div>
+                    <div class="card-value counter" data-count="250000">0</div>
+                    <div class="card-unit">ريال</div>
+                </div>
+            </div>
+
+            <!-- Card 2: إجمالي الأرباح المحققة -->
+            <div class="dashboard-card">
+                <div class="card-icon"
+                    style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(4, 120, 87, 0.1)); color: #10b981;">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">إجمالي الأرباح المحققة</div>
+                    <div class="card-value counter" data-count="37500">0</div>
+                    <div class="card-unit">ريال</div>
+                </div>
+            </div>
+
+            <!-- Card 3: المشاريع النشطة -->
+            <div class="dashboard-card">
+                <div class="card-icon"
+                    style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(2, 132, 199, 0.1)); color: #06b6d4;">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">المشاريع النشطة</div>
+                    <div class="card-value counter" data-count="5">0</div>
+                    <div class="card-unit">مشاريع</div>
+                </div>
+            </div>
+
+            <!-- Card 4: المشاريع المكتملة -->
+            <div class="dashboard-card">
+                <div class="card-icon"
+                    style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.1), rgba(100, 116, 139, 0.1)); color: #94a3b8;">
+                    <i class="fas fa-circle-check"></i>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">المشاريع المكتملة</div>
+                    <div class="card-value counter" data-count="12">0</div>
+                    <div class="card-unit">مشروع</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Opportunities Section -->
+        <h3 class="section-title">فرص الاستثمار الحالية</h3>
+
+        <div class="quick-filters">
+            <button class="filter-btn active">الكل</button>
+            <button class="filter-btn">زراعي</button>
+            <button class="filter-btn">تعليمي</button>
+            <button class="filter-btn">تجاري</button>
+            <button class="filter-btn">خدمات</button>
+        </div>
+
+        <div class="investment-cards-container">
+            <!-- Investment Opportunity 1 -->
+            <div class="investment-card">
+                <div class="project-tags">
+                    <span class="project-tag tag-funding">
+                        <i class="fas fa-clock"></i> قيد التمويل
+                    </span>
+                </div>
+                <div class="project-overlay">
+                    <p class="text-center mb-0">منصة تعليمية رقمية تهدف لرفع جودة التعليم في المناطق الريفية.</p>
+                </div>
+                <div class="project-header">
+                    <div class="sector-icon sector-education">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="project-title">منصة تعليمية رقمية</h4>
+                    <span class="sector-badge">تعليمي</span>
+                </div>
+                <div class="return-percentage">+14%</div>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">المدة</span>
+                        <span class="detail-value">18 شهر</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">الحد الأدنى</span>
+                        <span class="detail-value">1,000 ريال</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 85%</span>
+                        <span class="progress-amount">850,000 من 1,000,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="investment-card-footer">
+                    <button class="btn btn-details">
+                        <i class="fas fa-eye me-1"></i> التفاصيل
+                    </button>
+                    <button class="btn btn-invest">
+                        <i class="fas fa-invest me-1"></i> استثمر الآن
+                    </button>
+                </div>
+            </div>
+
+            <!-- Investment Opportunity 2 -->
+            <div class="investment-card">
+                <div class="project-tags">
+                    <span class="project-tag tag-new">
+                        <i class="fas fa-bolt"></i> جديد
+                    </span>
+                </div>
+                <div class="project-overlay">
+                    <p class="text-center mb-0">مزرعة عضوية ذكية تستخدم تقنيات الزراعة الحديثة لزيادة الإنتاجية.</p>
+                </div>
+                <div class="project-header">
+                    <div class="sector-icon sector-agricultural">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h4 class="project-title">مزرعة عضوية ذكية</h4>
+                    <span class="sector-badge">زراعي</span>
+                </div>
+                <div class="return-percentage">+12%</div>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">المدة</span>
+                        <span class="detail-value">24 شهر</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">الحد الأدنى</span>
+                        <span class="detail-value">2,000 ريال</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 65%</span>
+                        <span class="progress-amount">650,000 من 1,000,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="investment-card-footer">
+                    <button class="btn btn-details">
+                        <i class="fas fa-eye me-1"></i> التفاصيل
+                    </button>
+                    <button class="btn btn-invest">
+                        <i class="fas fa-invest me-1"></i> استثمر الآن
+                    </button>
+                </div>
+            </div>
+
+            <!-- Investment Opportunity 3 -->
+            <div class="investment-card">
+                <div class="project-tags">
+                    <span class="project-tag tag-completed">
+                        <i class="fas fa-check"></i> مكتمل التمويل
+                    </span>
+                </div>
+                <div class="project-overlay">
+                    <p class="text-center mb-0">مطعم صحي محلي يقدم وجبات صحية وعضوية لسكان المنطقة.</p>
+                </div>
+                <div class="project-header">
+                    <div class="sector-icon sector-food">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4 class="project-title">مطعم صحي محلي</h4>
+                    <span class="sector-badge">مطاعم وخدمات طعام</span>
+                </div>
+                <div class="return-percentage">+10%</div>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">المدة</span>
+                        <span class="detail-value">12 شهر</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">الحد الأدنى</span>
+                        <span class="detail-value">1,500 ريال</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 100%</span>
+                        <span class="progress-amount">500,000 من 500,000</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="investment-card-footer">
+                    <button class="btn btn-details">
+                        <i class="fas fa-eye me-1"></i> التفاصيل
+                    </button>
+                    <button class="btn btn-invest completed" disabled>
+                        <i class="fas fa-check me-1"></i> مكتمل
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profit Summary Section -->
+        <h3 class="section-title">ملخص الأرباح</h3>
+        <div class="profit-summary">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="profit-chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="profit-highlight">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span>الأرباح الصافية هذا الشهر:</span>
+                            <span class="text-success fs-4">5,300 ريال</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span>أعلى مشروع ربحًا:</span>
+                            <span class="text-success">منصة تعليمية رقمية (+14%) 📈</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h6 class="mb-3">توزيع الأرباح</h6>
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="me-3"
+                                style="width: 20px; height: 20px; background: var(--profit-blue); border-radius: 4px;">
+                            </div>
+                            <span class="flex-grow-1">رأس المال: 250,000 ريال</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="me-3"
+                                style="width: 20px; height: 20px; background: var(--profit-green); border-radius: 4px;">
+                            </div>
+                            <span class="flex-grow-1">أرباح مستلمة: 37,500 ريال</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3"
+                                style="width: 20px; height: 20px; background: var(--profit-gray); border-radius: 4px;">
+                            </div>
+                            <span class="flex-grow-1">أرباح متوقعة: 12,800 ريال</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Portfolio Section -->
+        <h3 class="section-title">محفظتك الاستثمارية</h3>
+        <div class="portfolio-summary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="fw-bold">
+                    <i class="fas fa-chart-bar me-2"></i> متوسط العائد السنوي الحالي: 10.5%
+                </div>
+                <button class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-file-pdf me-1"></i> تحميل تقرير شهري
+                </button>
+            </div>
+        </div>
+        <div class="portfolio-table">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>المشروع</th>
+                            <th>المبلغ المستثمر</th>
+                            <th>الأرباح المحققة</th>
+                            <th>حالة الاستثمار</th>
+                            <th>تاريخ البدء</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>مطعم صحي محلي</td>
+                            <td>15,000 ريال</td>
+                            <td>1,350 ريال</td>
+                            <td><span class="badge bg-success">نشط</span></td>
+                            <td>10/08/2025</td>
+                        </tr>
+                        <tr>
+                            <td>مزرعة عضوية ذكية</td>
+                            <td>25,000 ريال</td>
+                            <td>2,100 ريال</td>
+                            <td><span class="badge bg-primary">ممول بالكامل</span></td>
+                            <td>05/06/2025</td>
+                        </tr>
+                        <tr>
+                            <td>منصة تعليمية رقمية</td>
+                            <td>10,000 ريال</td>
+                            <td>0 ريال</td>
+                            <td><span class="badge bg-warning text-dark">قيد التمويل</span></td>
+                            <td>09/10/2025</td>
+                        </tr>
+                        <tr>
+                            <td>مشروع توصيل طعام</td>
+                            <td>20,000 ريال</td>
+                            <td>1,800 ريال</td>
+                            <td><span class="badge bg-success">نشط</span></td>
+                            <td>15/09/2025</td>
+                        </tr>
+                        <tr>
+                            <td>متجر إلكتروني</td>
+                            <td>12,000 ريال</td>
+                            <td>0 ريال</td>
+                            <td><span class="badge bg-warning text-dark">قيد التمويل</span></td>
+                            <td>20/10/2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="p-3 bg-light border-top">
+                <div class="d-flex justify-content-end">
+                    <div class="fw-bold fs-5">إجمالي الأرباح الحالية: <span class="text-success">3,450 ريال</span> 💰
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction History Section -->
+        <h3 class="section-title">سجل المعاملات</h3>
+        <div class="transaction-table">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>نوع العملية</th>
+                            <th>المبلغ</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="transaction-row">
+                            <td>10/11/2025</td>
+                            <td>تحويل أرباح مشروع "المزرعة العضوية"</td>
+                            <td class="text-success">+2,100 ريال</td>
+                            <td><span class="badge bg-success">مكتمل ✅</span></td>
+                        </tr>
+                        <tr class="transaction-row">
+                            <td>05/11/2025</td>
+                            <td>استثمار في مشروع "التعليم الرقمي"</td>
+                            <td class="text-danger">-10,000 ريال</td>
+                            <td><span class="badge bg-success">ناجح ✅</span></td>
+                        </tr>
+                        <tr class="transaction-row">
+                            <td>02/11/2025</td>
+                            <td>استرداد من مشروع "المطعم الصحي"</td>
+                            <td class="text-success">+3,000 ريال</td>
+                            <td><span class="badge bg-success">مكتمل ✅</span></td>
+                        </tr>
+                        <tr class="transaction-row">
+                            <td>28/10/2025</td>
+                            <td>تحويل أرباح مشروع "توصيل الطعام"</td>
+                            <td class="text-success">+1,350 ريال</td>
+                            <td><span class="badge bg-success">مكتمل ✅</span></td>
+                        </tr>
+                        <tr class="transaction-row">
+                            <td>15/10/2025</td>
+                            <td>استثمار في مشروع "المتجر الإلكتروني"</td>
+                            <td class="text-danger">-12,000 ريال</td>
+                            <td><span class="badge bg-success">ناجح ✅</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Support Chat Section -->
+        <h3 class="section-title">المراسلات والدعم</h3>
+        <div class="chat-section">
+            <div class="d-flex align-items-center mb-4">
+                <div class="avatar me-3" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">اد</div>
+                <div>
+                    <h5 class="mb-0" style="color: #0f172a;">إدارة الدعم المالي</h5>
+                    <small class="text-success"><i class="fas fa-circle me-1"></i> متصل الآن</small>
+                </div>
+                <div class="ms-auto position-relative">
+                    <button class="btn btn-primary px-4 py-2">
+                        <i class="fas fa-comment-dots me-2"></i> ابدأ محادثة جديدة
+                    </button>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        style="font-size: 0.7rem;">
+                        1
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex flex-column"
+                style="min-height: 250px; max-height: 350px; overflow-y: auto; padding: 1.5rem; background: #f8fafc; border-radius: 18px; margin-bottom: 1.5rem;">
+                <div class="chat-message message-received">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>إدارة الدعم المالي</strong>
+                        <small class="text-muted">10:30</small>
+                    </div>
+                    <p class="mb-0">تم استقبال استفسارك المالي وسيتواصل معك قسم المحاسبة خلال 24 ساعة.</p>
+                </div>
+                <div class="chat-message message-sent">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>أنت</strong>
+                        <small class="text-white-50">10:28</small>
+                    </div>
+                    <p class="mb-0">أرغب في الاستفسار عن أرباح مشروع المزرعة العضوية</p>
+                </div>
+                <div class="chat-message message-received">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>إدارة الدعم المالي</strong>
+                        <small class="text-muted">09:15</small>
+                    </div>
+                    <p class="mb-0">مرحبًا خالد، كيف يمكننا مساعدتك اليوم؟</p>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control py-3" placeholder="اكتب رسالتك...">
+                <button class="btn btn-outline-secondary py-3 px-3" title="رفع ملف">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="btn btn-primary py-3 px-4">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">إقراضك</h5>
+                    <p class="text-white-50">منصة تمويل رقمية تربط بين المقترضين والمستثمرين</p>
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle"></i> موثوق من الجهات الرسمية
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-hand-holding-usd me-2"></i> فرص الاستثمار</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-building me-2"></i> المشاريع النشطة</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-question-circle me-2"></i> الأسئلة الشائعة</a>
+                        </li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-sitemap me-2"></i> خريطة الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">الدعم</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-phone me-2"></i> اتصل بنا</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-exclamation-triangle me-2"></i> إرسال شكوى</a>
+                        </li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-file-contract me-2"></i> شروط الاستخدام</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-lock me-2"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">النشرة البريدية</h5>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-light" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <small class="text-white-50 mt-2">للحصول على تنبيهات المشاريع الجديدة</small>
+                </div>
+            </div>
+            <div class="footer-license">
+                <p class="text-white-50 mb-0">منصة إقراضك حاصلة على ترخيص الهيئة العامة للتمويل الرقمي – رقم 2025/15.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notifications Panel -->
+    <div class="notification-panel" id="notificationsPanel">
+        <div class="p-4 border-bottom"
+            style="background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end)); color: white;">
+            <h5 class="mb-0">التنبيهات</h5>
+            <button class="btn text-white float-end p-0" id="closeNotifications" style="font-size: 1.2rem;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-4">
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-success" style="width: 48px; height: 48px; font-size: 1.2rem;">أ</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">تم تحويل أرباحك من مشروع مزرعة عضوية ذكية</h6>
+                        <p class="text-muted mb-1">تم تحويل مبلغ 2,100 ريال إلى حسابك البنكي. 💰</p>
+                        <small class="text-muted">اليوم، 15:30</small>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-info" style="width: 48px; height: 48px; font-size: 1.2rem;">م</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">مشروعك الاستثماري بلغ 85٪ من التمويل المطلوب</h6>
+                        <p class="text-muted mb-1">مشروع "منصة تعليمية رقمية" قارب على الاكتمال! 📈</p>
+                        <small class="text-muted">أمس، 11:20</small>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-warning" style="width: 48px; height: 48px; font-size: 1.2rem;">ت</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">الإيداع الشهري متاح الآن</h6>
+                        <p class="text-muted mb-1">يمكنك سحب أرباحك الشهرية من خلال لوحة التحكم. 💸</p>
+                        <small class="text-muted">10 نوفمبر 2025</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated counters
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target.toLocaleString('ar-SA');
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.ceil(current).toLocaleString('ar-SA');
+                    }
+                }, 16);
+            });
+        }
+
+        // Initialize profit chart with animation
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize counters
+            animateCounters();
+
+            const ctx = document.getElementById('profitChart').getContext('2d');
+            const profitChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['رأس المال', 'الأرباح المستلمة', 'الأرباح المتوقعة'],
+                    datasets: [{
+                        data: [250000, 37500, 12800],
+                        backgroundColor: [
+                            '#3b82f6',
+                            '#10b981',
+                            '#94a3b8'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '70%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 2000
+                    }
+                }
+            });
+
+            // Toggle notifications panel
+            document.getElementById('notificationsBtn').addEventListener('click', function () {
+                document.getElementById('notificationsPanel').classList.add('show');
+            });
+
+            document.getElementById('closeNotifications').addEventListener('click', function () {
+                document.getElementById('notificationsPanel').classList.remove('show');
+            });
+
+            // Close notifications panel when clicking outside
+            document.addEventListener('click', function (event) {
+                const notificationsPanel = document.getElementById('notificationsPanel');
+                const notificationsBtn = document.getElementById('notificationsBtn');
+
+                if (!notificationsPanel.contains(event.target) &&
+                    !notificationsBtn.contains(event.target) &&
+                    notificationsPanel.classList.contains('show')) {
+                    notificationsPanel.classList.remove('show');
+                }
+            });
+
+            // Show/hide notifications dropdown on hover
+            const notificationsBtn = document.getElementById('notificationsBtn');
+            const notificationsDropdown = notificationsBtn.querySelector('.dropdown-menu');
+
+            notificationsBtn.addEventListener('mouseenter', function () {
+                notificationsDropdown.style.display = 'block';
+            });
+
+            notificationsBtn.addEventListener('mouseleave', function () {
+                notificationsDropdown.style.display = 'none';
+            });
+
+            // Filter buttons functionality
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+
+            // Add hover effect to dashboard cards to show growth
+            document.querySelectorAll('.dashboard-card').forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    const counter = this.querySelector('.counter');
+                    const currentValue = parseInt(counter.textContent.replace(/,/g, ''));
+                    const growth = Math.floor(currentValue * 0.05); // 5% growth
+
+                    // Show growth indicator
+                    const growthElement = document.createElement('div');
+                    growthElement.className = 'text-success small mt-1';
+                    growthElement.textContent = `+${growth.toLocaleString('ar-SA')} هذا الشهر`;
+                    growthElement.style.position = 'absolute';
+                    growthElement.style.bottom = '10px';
+                    growthElement.style.left = '50%';
+                    growthElement.style.transform = 'translateX(-50%)';
+                    growthElement.style.fontWeight = '600';
+
+                    if (!this.querySelector('.text-success.small')) {
+                        this.appendChild(growthElement);
+                    }
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    const growthElement = this.querySelector('.text-success.small');
+                    if (growthElement) {
+                        growthElement.remove();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

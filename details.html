@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المشروع - إقراضك</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-gradient-start: #1e3a8a;
+            --primary-gradient-end: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            font-family: 'Tajawal', sans-serif;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .project-header {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid transparent;
+        }
+
+        .status-available {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border-color: #6ee7b7;
+        }
+
+        .status-funding {
+            background: linear-gradient(135deg, #ffedd5, #fed7aa);
+            color: #c2410c;
+            border-color: #fdba74;
+        }
+
+        .status-completed {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            color: #0891b2;
+            border-color: #7dd3fc;
+        }
+
+        .sector-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .sector-education {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+            text-align: center;
+        }
+
+        .summary-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .icon-return {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+        }
+
+        .icon-duration {
+            background: linear-gradient(135deg, #0891b2, #0e7490);
+        }
+
+        .icon-minimum {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        }
+
+        .icon-progress {
+            background: linear-gradient(135deg, #ea580c, #c2410c);
+        }
+
+        .summary-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .progress-section {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .progress-container {
+            background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--success-color));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .progress-stat {
+            text-align: center;
+        }
+
+        .progress-stat-value {
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 1.1rem;
+        }
+
+        .progress-stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .tabs-section {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .nav-tabs {
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+
+        .nav-tabs .nav-link {
+            color: #64748b;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--primary-gradient-end);
+            border-bottom: 3px solid var(--primary-gradient-end);
+            background: transparent;
+        }
+
+        .tab-content {
+            padding: 1rem 0;
+        }
+
+        .investment-form {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .quick-amounts {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-amount {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-amount:hover,
+        .quick-amount.active {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            border-color: transparent;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .summary-label {
+            color: #64748b;
+        }
+
+        .summary-value {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .btn-invest {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-invest:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .verified-badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .risk-item {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid #fee2e2;
+        }
+
+        .risk-icon {
+            color: #ef4444;
+            margin-top: 0.25rem;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-license {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                padding: 1.5rem;
+            }
+
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0 fw-bold">
+                    <i class="fas fa-hand-holding-usd me-2"></i>
+                    إقراضك
+                </h3>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar">خ</div>
+                    <div class="text-end">
+                        <div class="fw-bold fs-5">خالد عبد الله</div>
+                        <small class="text-white-50">مستثمر نشط</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Project Header -->
+        <div class="project-header">
+            <div class="d-flex flex-wrap align-items-start gap-4 mb-3">
+                <div class="sector-icon sector-education">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h2 class="mb-2">منصة تعليمية رقمية</h2>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="status-badge status-funding">
+                            <i class="fas fa-clock"></i> قيد التمويل
+                        </span>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-primary px-4 py-2">
+                        <i class="fas fa-heart me-1"></i> إضافة للمفضلة
+                    </button>
+                    <button class="btn btn-primary px-4 py-2">
+                        <i class="fas fa-invest me-1"></i> استثمر الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <!-- Card 1: العائد السنوي المتوقع -->
+            <div class="summary-card">
+                <div class="summary-icon icon-return">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="summary-value">+14%</div>
+                <div class="summary-label">العائد السنوي المتوقع</div>
+            </div>
+
+            <!-- Card 2: مدة الاستثمار -->
+            <div class="summary-card">
+                <div class="summary-icon icon-duration">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="summary-value">18 شهر</div>
+                <div class="summary-label">مدة الاستثمار</div>
+            </div>
+
+            <!-- Card 3: الحد الأدنى للاستثمار -->
+            <div class="summary-card">
+                <div class="summary-icon icon-minimum">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="summary-value">1,000 ريال</div>
+                <div class="summary-label">الحد الأدنى للاستثمار</div>
+            </div>
+
+            <!-- Card 4: نسبة التمويل الحالية -->
+            <div class="summary-card">
+                <div class="summary-icon icon-progress">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="summary-value">85%</div>
+                <div class="summary-label">نسبة التمويل الحالية</div>
+            </div>
+        </div>
+
+        <!-- Fund Progress Section -->
+        <div class="progress-section">
+            <h4 class="mb-3">شريط التمويل</h4>
+            <div class="d-flex justify-content-between mb-1">
+                <span>المطلوب: 1,000,000 ريال</span>
+                <span>المجمع: 850,000 ريال</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-fill" style="width: 85%"></div>
+            </div>
+            <div class="progress-stats">
+                <div class="progress-stat">
+                    <div class="progress-stat-value">850,000 ريال</div>
+                    <div class="progress-stat-label">المبلغ المجمع</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value">42</div>
+                    <div class="progress-stat-label">عدد المستثمرين</div>
+                </div>
+                <div class="progress-stat">
+                    <div class="progress-stat-value">150,000 ريال</div>
+                    <div class="progress-stat-label">المتبقي</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="tabs-section">
+            <ul class="nav nav-tabs" id="projectTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about"
+                        type="button" role="tab" aria-controls="about" aria-selected="true">
+                        <i class="fas fa-info-circle me-2"></i> عن المشروع
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="financial-tab" data-bs-toggle="tab" data-bs-target="#financial"
+                        type="button" role="tab" aria-controls="financial" aria-selected="false">
+                        <i class="fas fa-chart-line me-2"></i> الخطة المالية
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="owner-tab" data-bs-toggle="tab" data-bs-target="#owner" type="button"
+                        role="tab" aria-controls="owner" aria-selected="false">
+                        <i class="fas fa-user-tie me-2"></i> صاحب المشروع
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="risks-tab" data-bs-toggle="tab" data-bs-target="#risks" type="button"
+                        role="tab" aria-controls="risks" aria-selected="false">
+                        <i class="fas fa-exclamation-triangle me-2"></i> مخاطر الاستثمار
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="projectTabContent">
+                <!-- Tab 1: عن المشروع -->
+                <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                    <h5 class="mb-3">وصف تفصيلي للمشروع</h5>
+                    <p class="text-muted mb-4">
+                        منصة تعليمية رقمية تهدف لرفع جودة التعليم في المناطق الريفية من خلال توفير محتوى تعليمي تفاعلي
+                        ومبتكر
+                        يتناسب مع احتياجات الطلاب في تلك المناطق. المشروع يسعى لسد الفجوة الرقمية في التعليم وتمكين
+                        الطلاب
+                        من الوصول إلى أفضل الموارد التعليمية بغض النظر عن موقعهم الجغرافي.
+                    </p>
+
+                    <h5 class="mb-3">فكرة المشروع والأهداف</h5>
+                    <ul class="text-muted mb-4">
+                        <li class="mb-2">توفير منصة تعليمية شاملة تغطي جميع المواد الدراسية للمرحلة الابتدائية والمتوسطة
+                        </li>
+                        <li class="mb-2">دمج تقنيات الذكاء الاصطناعي لتخصيص تجربة التعلم لكل طالب</li>
+                        <li class="mb-2">توفير تدريب للمعلمين على استخدام المنصة بفعالية</li>
+                        <li class="mb-2">الوصول إلى 50,000 طالب في المناطق الريفية خلال السنتين الأولى</li>
+                    </ul>
+
+                    <h5 class="mb-3">حجم السوق المستهدف</h5>
+                    <p class="text-muted mb-4">
+                        يضم السوق المستهدف أكثر من 2 مليون طالب في المناطق الريفية بالمملكة العربية السعودية،
+                        مع معدل نمو سنوي يقدر بـ 8%. المشروع يركز على الفئة العمرية من 6-15 سنة والتي تمثل
+                        حوالي 40% من إجمالي الطلاب في المناطق المستهدفة.
+                    </p>
+
+                    <h5 class="mb-3">نقاط القوة</h5>
+                    <ul class="text-muted">
+                        <li class="mb-2">فريق عمل ذو خبرة في مجال التعليم والتكنولوجيا</li>
+                        <li class="mb-2">شراكات استراتيجية مع وزارة التعليم والجمعيات الخيرية</li>
+                        <li class="mb-2">نموذج عمل مربح وقابل للتوسع</li>
+                        <li class="mb-2">دعم حكومي للمشاريع التعليمية الرقمية</li>
+                    </ul>
+                </div>
+
+                <!-- Tab 2: الخطة المالية -->
+                <div class="tab-pane fade" id="financial" role="tabpanel" aria-labelledby="financial-tab">
+                    <h5 class="mb-3">تكلفة المشروع الكاملة</h5>
+                    <p class="text-muted mb-4">إجمالي تكلفة المشروع: <strong>1,000,000 ريال</strong></p>
+
+                    <h5 class="mb-3">توزيع استخدام التمويل</h5>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <ul class="text-muted">
+                                <li class="mb-2">تطوير المنصة التقنية: <strong>400,000 ريال (40%)</strong></li>
+                                <li class="mb-2">المحتوى التعليمي: <strong>250,000 ريال (25%)</strong></li>
+                                <li class="mb-2">التسويق والترويج: <strong>150,000 ريال (15%)</strong></li>
+                                <li class="mb-2">التدريب والدعم الفني: <strong>100,000 ريال (10%)</strong></li>
+                                <li class="mb-2">التكاليف الإدارية: <strong>100,000 ريال (10%)</strong></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container" style="height: 200px;">
+                                <canvas id="fundingChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">توقعات الإيرادات والأرباح</h5>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>السنة</th>
+                                    <th>الإيرادات</th>
+                                    <th>التكاليف</th>
+                                    <th>الأرباح الصافية</th>
+                                    <th>نسبة الربح</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>الأولى</td>
+                                    <td>300,000 ريال</td>
+                                    <td>250,000 ريال</td>
+                                    <td>50,000 ريال</td>
+                                    <td>+16.7%</td>
+                                </tr>
+                                <tr>
+                                    <td>الثانية</td>
+                                    <td>600,000 ريال</td>
+                                    <td>300,000 ريال</td>
+                                    <td>300,000 ريال</td>
+                                    <td>+50%</td>
+                                </tr>
+                                <tr>
+                                    <td>الثالثة</td>
+                                    <td>1,200,000 ريال</td>
+                                    <td>400,000 ريال</td>
+                                    <td>800,000 ريال</td>
+                                    <td>+66.7%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="mb-3">نقطة التعادل (Break-even)</h5>
+                    <p class="text-muted">
+                        من المتوقع أن يصل المشروع إلى نقطة التعادل في نهاية السنة الثانية من التشغيل،
+                        حيث ستغطي الإيرادات جميع التكاليف التشغيلية والاستثمارية.
+                    </p>
+                </div>
+
+                <!-- Tab 3: صاحب المشروع -->
+                <div class="tab-pane fade" id="owner" role="tabpanel" aria-labelledby="owner-tab">
+                    <div class="d-flex align-items-start gap-4 mb-4">
+                        <div class="avatar">أ</div>
+                        <div>
+                            <h5 class="mb-1">أحمد محمد عبدالله</h5>
+                            <div class="verified-badge">
+                                <i class="fas fa-check-circle"></i> موثق
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">نبذة عن الخبرة</h5>
+                    <p class="text-muted mb-4">
+                        يمتلك أحمد خبرة تزيد عن 12 عامًا في مجال التعليم الرقمي، حيث عمل سابقًا كمدير
+                        تقني في إحدى أكبر المنصات التعليمية في المملكة. حاصل على درجة الماجستير في
+                        تقنيات التعليم من جامعة الملك سعود، وله باع طويل في تطوير الحلول التعليمية
+                        المبتكرة التي تلبي احتياجات السوق المحلي.
+                    </p>
+
+                    <h5 class="mb-3">التوثيق</h5>
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>سجل تجاري مفعل</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>بطاقة ضريبية سارية</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>شهادة كفاءة مالية</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>توثيق الهوية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: مخاطر الاستثمار -->
+                <div class="tab-pane fade" id="risks" role="tabpanel" aria-labelledby="risks-tab">
+                    <div class="risk-item">
+                        <div class="risk-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">التأخير في تنفيذ المشروع</h6>
+                            <p class="text-muted mb-0">
+                                قد تواجه المشروع تحديات في الجدول الزمني للتنفيذ بسبب عوامل خارجية مثل
+                                التغييرات التنظيمية أو صعوبات في التوظيف.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="risk-item">
+                        <div class="risk-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">المنافسة في السوق</h6>
+                            <p class="text-muted mb-0">
+                                دخول منافسين جدد إلى السوق قد يؤثر على حصة المشروع من العملاء
+                                وقدرته على تحقيق الأهداف المالية المتوقعة.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="risk-item">
+                        <div class="risk-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">التغيرات التقنية</h6>
+                            <p class="text-muted mb-0">
+                                التطور السريع في تقنيات التعليم قد يتطلب استثمارات إضافية
+                                للحفاظ على تنافسية المنصة وتحديث محتواها.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="risk-item">
+                        <div class="risk-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-1">الاعتماد على التمويل المستمر</h6>
+                            <p class="text-muted mb-0">
+                                نجاح المشروع يعتمد على قدرته على جذب مستثمرين جدد في المراحل
+                                اللاحقة، وقد يواجه صعوبات في ذلك في ظل ظروف السوق المتغيرة.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning mt-4">
+                        <h6 class="mb-2"><i class="fas fa-exclamation-triangle me-2"></i> إشعار تنظيمي هام</h6>
+                        <p class="mb-0">
+                            العوائد المتوقعة من هذا الاستثمار غير مضمونة بنسبة 100%، وتخضع لعوامل السوق
+                            والمخاطر التشغيلية. يُنصح المستثمرون بقراءة الشروط والأحكام الكاملة
+                            وفهم طبيعة المخاطر قبل اتخاذ قرار الاستثمار.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Form -->
+        <div class="investment-form">
+            <h4 class="mb-3">نموذج الاستثمار السريع</h4>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">مبلغ الاستثمار (ريال)</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">﷼</span>
+                    <input type="number" class="form-control form-control-lg" id="investmentAmount" min="1000"
+                        value="1000">
+                </div>
+
+                <div class="quick-amounts">
+                    <div class="quick-amount active" data-amount="1000">1,000</div>
+                    <div class="quick-amount" data-amount="5000">5,000</div>
+                    <div class="quick-amount" data-amount="10000">10,000</div>
+                    <div class="quick-amount" data-amount="25000">25,000</div>
+                </div>
+            </div>
+
+            <div class="summary-box">
+                <div class="summary-item">
+                    <span class="summary-label">حصتك المتوقعة</span>
+                    <span class="summary-value">0.12%</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">العائد المتوقع</span>
+                    <span class="summary-value">140 ريال</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">مدة الاستثمار</span>
+                    <span class="summary-value">18 شهر</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">إجمالي العائد</span>
+                    <span class="summary-value text-success">+14%</span>
+                </div>
+            </div>
+
+            <button class="btn btn-invest">
+                <i class="fas fa-check-circle me-2"></i> تأكيد الاستثمار
+            </button>
+
+            <p class="disclaimer text-center mb-0">
+                <i class="fas fa-info-circle me-1"></i> إتمام العملية يعني موافقتك على الشروط والأحكام.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">إقراضك</h5>
+                    <p class="text-white-50">منصة تمويل رقمية تربط بين المقترضين والمستثمرين</p>
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle"></i> موثوق من الجهات الرسمية
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-hand-holding-usd me-2"></i> فرص الاستثمار</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-building me-2"></i> المشاريع النشطة</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-question-circle me-2"></i> الأسئلة الشائعة</a>
+                        </li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-sitemap me-2"></i> خريطة الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">الدعم</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-phone me-2"></i> اتصل بنا</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-exclamation-triangle me-2"></i> إرسال شكوى</a>
+                        </li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-file-contract me-2"></i> شروط الاستخدام</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-lock me-2"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">النشرة البريدية</h5>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-light" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <small class="text-white-50 mt-2">للحصول على تنبيهات المشاريع الجديدة</small>
+                </div>
+            </div>
+            <div class="footer-license">
+                <p class="text-white-50 mb-0">منصة إقراضك حاصلة على ترخيص الهيئة العامة للتمويل الرقمي – رقم 2025/15.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize funding distribution chart
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('fundingChart').getContext('2d');
+            const fundingChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['تطوير المنصة', 'المحتوى التعليمي', 'التسويق', 'التدريب', 'التكاليف الإدارية'],
+                    datasets: [{
+                        [40, 25, 15, 10, 10],
+                        backgroundColor: [
+                            '#059669',
+                            '#0891b2',
+                            '#7c3aed',
+                            '#ea580c',
+                            '#6b7280'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            // Quick amount buttons functionality
+            document.querySelectorAll('.quick-amount').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.querySelectorAll('.quick-amount').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    document.getElementById('investmentAmount').value = this.getAttribute('data-amount');
+                    updateInvestmentSummary(this.getAttribute('data-amount'));
+                });
+            });
+
+            // Investment amount input change
+            document.getElementById('investmentAmount').addEventListener('input', function () {
+                updateInvestmentSummary(this.value);
+            });
+
+            // Update investment summary
+            function updateInvestmentSummary(amount) {
+                const investmentAmount = parseFloat(amount) || 0;
+                const totalProject = 1000000; // Total project amount in SAR
+                const expectedReturn = 0.14; // 14% annual return
+                const duration = 1.5; // 18 months = 1.5 years
+
+                const sharePercentage = (investmentAmount / totalProject) * 100;
+                const expectedProfit = investmentAmount * expectedReturn * duration;
+                const totalReturn = investmentAmount + expectedProfit;
+
+                // Update summary values
+                document.querySelector('.summary-box .summary-value:nth-child(2)').textContent =
+                    sharePercentage.toFixed(2) + '%';
+                document.querySelector('.summary-box .summary-value:nth-child(4)').textContent =
+                    expectedProfit.toLocaleString('ar-SA') + ' ريال';
+            }
+
+            // Initialize with default amount
+            updateInvestmentSummary(1000);
+        });
+    </script>
+</body>
+
+</html>

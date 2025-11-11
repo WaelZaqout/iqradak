@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المقترض - إقراضك</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient-start: #1e40af;
+            --primary-gradient-end: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --timeline-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+            --purple-gradient: linear-gradient(135deg, #8b5cf6, #6366f1);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            font-family: 'Tajawal', sans-serif;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .status-active {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        .status-verifying {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .dropdown-menu {
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: none;
+            padding: 0.5rem 0;
+            animation: slideDown 0.2s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8fafc;
+            color: var(--primary-gradient-end);
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, white 0%, #f8fafc 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        /* Enhanced Dashboard Cards */
+        .dashboard-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            width: 240px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--primary-gradient-end));
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1));
+            color: var(--primary-gradient-end);
+        }
+
+        .card-body {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .card-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0.5rem 0;
+        }
+
+        .card-unit {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .project-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 320px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-gradient-start), var(--primary-gradient-end));
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+            border-color: #e2e8f0;
+        }
+
+        .project-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items-start;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tag-new {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .tag-reviewing {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .tag-urgent {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .project-title {
+            color: #0f172a;
+            margin: 0.25rem 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .project-date {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin: 0.25rem 0;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex: 2;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+
+        .sector-badge {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1e40af;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #93c5fd;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .guarantee-badge {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #6ee7b7;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .progress-section {
+            margin: 1.5rem 0;
+            flex: 1;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-percentage {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .progress-amount {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .progress-container {
+            background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #94a3b8, var(--primary-gradient-start), var(--success-color));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid transparent;
+        }
+
+        .status-review {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+            border-color: #fcd34d;
+        }
+
+        .status-funding {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+
+        .status-full {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border-color: #6ee7b7;
+        }
+
+        .status-rejected {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            color: #991b1b;
+            border-color: #fca5a5;
+        }
+
+        .status-repayment {
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            color: #0891b2;
+            border-color: #7dd3fc;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 24px;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-gradient-start), var(--primary-gradient-end));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-right: 5rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            right: -4px;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--primary-gradient-end);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-dot.active {
+            background: var(--primary-gradient-end);
+            border-color: var(--primary-gradient-end);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .timeline-dot i {
+            font-size: 0.8rem;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            right: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+        }
+
+        .timeline-item:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .repayment-table {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #f1f5f9;
+        }
+
+        .repayment-alert {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .repayment-alert.show {
+            display: block;
+        }
+
+        .repayment-summary {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .repayment-summary-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-gradient-start), var(--success-color));
+            width: 33%;
+        }
+
+        .notification-panel {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 360px;
+            height: 100vh;
+            background: white;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.2);
+            z-index: 1050;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .notification-panel.show {
+            right: 0;
+        }
+
+        .notification-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s ease;
+        }
+
+        .notification-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-primary-gradient {
+            background: var(--purple-gradient);
+            border: none;
+            padding: 0.85rem 2rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+            border-radius: 16px;
+        }
+
+        .btn-primary-gradient:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            color: #0f172a;
+            margin: 2.5rem 0 2rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--primary-gradient-end);
+            font-weight: 800;
+            font-size: 1.8rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            right: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gradient-end));
+        }
+
+        .repayment-status {
+            padding: 0.35rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+        }
+
+        .status-paid {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border-color: #6ee7b7;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #ffedd5, #fed7aa);
+            color: #c2410c;
+            border-color: #fdba74;
+        }
+
+        .days-left {
+            background: linear-gradient(135deg, #ffedd5, #fed7aa);
+            color: #c2410c;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .chat-message {
+            max-width: 75%;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-received {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border: 1px solid #cbd5e1;
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+            color: #0f172a;
+        }
+
+        .message-sent {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
+        }
+
+        .auto-reply {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        .verified-badge {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Counter animation */
+        .counter {
+            font-weight: 800;
+            color: #0f172a;
+            font-size: 1.5rem;
+        }
+
+        /* Quick filters */
+        .quick-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end));
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Scrollable stats on mobile */
+        .stats-container {
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 1.5rem;
+            min-width: fit-content;
+        }
+
+        @media (min-width: 768px) {
+            .stats-container {
+                overflow-x: visible;
+            }
+
+            .stats-row {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-cards-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .project-details {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-height: auto;
+            }
+
+            .dashboard-cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dashboard-card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="mb-0 fw-bold">
+                    <i class="fas fa-hand-holding-usd me-2"></i>
+                    إقراضك
+                </h3>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="position-relative">
+                        <button class="btn text-white position-relative" id="notificationsBtn">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                style="font-size: 0.7rem; padding: 0.35em 0.6em;">
+                                3
+                            </span>
+                            <!-- Dropdown notifications preview -->
+                            <div class="dropdown-menu position-absolute"
+                                style="right: 0; top: 100%; margin-top: 0.5rem; display: none; width: 320px;">
+                                <div class="p-3">
+                                    <h6 class="mb-2">آخر التنبيهات</h6>
+                                    <div class="small text-muted mb-2">اليوم، 14:30</div>
+                                    <p class="mb-1">تمت الموافقة على مشروعك التعليمي</p>
+                                    <div class="small text-muted mt-3">أمس، 09:15</div>
+                                    <p class="mb-0">تذكير: موعد دفع القسط الأول غدًا</p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar">أ</div>
+                        <div class="text-end">
+                            <div class="fw-bold fs-5">أحمد محمد</div>
+                            <div class="status-badge status-active">
+                                <i class="fas fa-circle"></i> مقترض نشط
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn text-white" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> تعديل الملف
+                                    الشخصي</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-lock me-2"></i> تغيير كلمة المرور</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-landmark me-2"></i> تحديث رقم الحساب
+                                    البنكي</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="fas fa-sign-out-alt me-2"></i>
+                                    تسجيل الخروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section text-center">
+            <h2 class="text-primary mb-2">مرحبًا أحمد 👋</h2>
+            <p class="text-muted fs-5 mb-3">يمكنك الآن متابعة مشاريعك الحالية أو تقديم مشروع جديد للحصول على تمويل.</p>
+            <p class="text-muted small mb-0">آخر تحديث: 10 نوفمبر 2025 – 3:15 PM</p>
+            <button class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="fas fa-book me-2"></i> التعليمات
+            </button>
+        </div>
+
+        <!-- Dashboard Overview with Improved Cards -->
+        <div class="dashboard-cards-container">
+            <!-- Card 1: الأقساط القادمة -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon"
+                        style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1)); color: #3b82f6;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">الأقساط القادمة</div>
+                    <div class="card-value">1</div>
+                    <div class="card-unit">دفعة</div>
+                </div>
+            </div>
+
+            <!-- Card 2: المشاريع قيد المراجعة -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon"
+                        style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); color: #f59e0b;">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">المشاريع قيد المراجعة</div>
+                    <div class="card-value">2</div>
+                    <div class="card-unit">مشروع</div>
+                </div>
+            </div>
+
+            <!-- Card 3: المشاريع الممولة -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon"
+                        style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(4, 120, 87, 0.1)); color: #10b981;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">المشاريع الممولة</div>
+                    <div class="card-value">3</div>
+                    <div class="card-unit">مشروع</div>
+                </div>
+            </div>
+
+            <!-- Card 4: إجمالي التمويل المطلوب -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <div class="card-icon"
+                        style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1)); color: #3b82f6;">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-title">إجمالي التمويل المطلوب</div>
+                    <div class="card-value">120,000</div>
+                    <div class="card-unit">ريال</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Filters -->
+        <div class="quick-filters">
+            <button class="filter-btn active">الكل</button>
+            <button class="filter-btn">قيد المراجعة</button>
+            <button class="filter-btn">قيد التمويل</button>
+            <button class="filter-btn">ممول بالكامل</button>
+        </div>
+
+        <!-- Primary CTA Button -->
+        <div class="text-center mb-4">
+            <button class="btn btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#fundingModal">
+                <i class="fas fa-plus-circle me-2"></i> قدّم مشروع جديد
+            </button>
+        </div>
+
+        <!-- My Projects Section with Enhanced Cards -->
+        <h3 class="section-title">مشاريعي</h3>
+
+        <div class="project-cards-container">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag tag-new">
+                                <i class="fas fa-bolt"></i> جديد
+                            </span>
+                        </div>
+                        <h4 class="project-title">مشروع تطبيق الهاتف الذكي</h4>
+                        <p class="project-date"><i class="fas fa-calendar me-2"></i> تاريخ التقديم: 5 نوفمبر 2025</p>
+                    </div>
+                    <span class="status-badge status-review">
+                        <i class="fas fa-hourglass-half"></i> قيد المراجعة
+                    </span>
+                </div>
+
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">نوع القطاع</span>
+                        <span class="sector-badge">تكنولوجيا</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">المبلغ المطلوب</span>
+                        <span class="detail-value">50,000 ريال</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">نوع الضمان</span>
+                        <span class="guarantee-badge">ضمان شخصي</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">مدة السداد</span>
+                        <span class="detail-value">12 شهر</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 0%</span>
+                        <span class="progress-amount">0 من 50,000 ريال</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="project-card-footer">
+                    <button class="btn btn-outline-secondary px-3 py-2">
+                        <i class="fas fa-eye me-1"></i> تفاصيل
+                    </button>
+                    <button class="btn btn-outline-primary px-3 py-2">
+                        <i class="fas fa-edit me-1"></i> تعديل
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <span class="project-tag tag-reviewing">
+                                <i class="fas fa-clock"></i> بانتظار المراجعة
+                            </span>
+                            <span class="project-tag tag-urgent">
+                                <i class="fas fa-exclamation"></i> عاجل
+                            </span>
+                        </div>
+                        <h4 class="project-title">محل تجاري لبيع أدوات المطبخ</h4>
+                        <p class="project-date"><i class="fas fa-calendar me-2"></i> تاريخ التقديم: 3 نوفمبر 2025</p>
+                    </div>
+                    <span class="status-badge status-funding">
+                        <i class="fas fa-chart-line"></i> قيد التمويل
+                    </span>
+                </div>
+
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">نوع القطاع</span>
+                        <span class="sector-badge">تجاري</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">المبلغ المطلوب</span>
+                        <span class="detail-value">120,000 ريال</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">نوع الضمان</span>
+                        <span class="guarantee-badge">عقار</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">مدة السداد</span>
+                        <span class="detail-value">24 شهر</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 65%</span>
+                        <span class="progress-amount">78,000 من 120,000 ريال</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                </div>
+
+                <div class="project-card-footer">
+                    <button class="btn btn-outline-secondary px-3 py-2">
+                        <i class="fas fa-eye me-1"></i> تفاصيل
+                    </button>
+                    <button class="btn btn-outline-danger px-3 py-2">
+                        <i class="fas fa-trash me-1"></i> حذف
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <div class="project-info">
+                        <div class="project-tags">
+                            <!-- No tags for completed projects -->
+                        </div>
+                        <h4 class="project-title">مشروع توصيل طعام</h4>
+                        <p class="project-date"><i class="fas fa-calendar me-2"></i> تاريخ التقديم: 1 نوفمبر 2025</p>
+                    </div>
+                    <span class="status-badge status-full">
+                        <i class="fas fa-check-circle"></i> ممول بالكامل
+                    </span>
+                </div>
+
+                <div class="project-details">
+                    <div class="detail-item">
+                        <span class="detail-label">نوع القطاع</span>
+                        <span class="sector-badge">خدمات</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">المبلغ المطلوب</span>
+                        <span class="detail-value">80,000 ريال</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">نوع الضمان</span>
+                        <span class="guarantee-badge">ضمان شخصي</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">مدة السداد</span>
+                        <span class="detail-value">18 شهر</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-percentage">نسبة التمويل: 100%</span>
+                        <span class="progress-amount">80,000 من 80,000 ريال</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+
+                <div class="project-card-footer">
+                    <button class="btn btn-outline-secondary px-3 py-2">
+                        <i class="fas fa-eye me-1"></i> تفاصيل
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Tracking Timeline -->
+        <h3 class="section-title">تتبع حالة المشروع</h3>
+        <div class="project-card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot active">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tooltip-text">تم استلام الطلب وبدأت عملية المراجعة</div>
+                    <h5 class="fw-bold mb-1">قيد المراجعة</h5>
+                    <small class="text-muted d-block">05 نوفمبر 2025</small>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot active">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tooltip-text">تمت الموافقة على المشروع بتاريخ 3 نوفمبر 2025</div>
+                    <h5 class="fw-bold mb-1">تم الموافقة المبدئية</h5>
+                    <small class="text-muted d-block">07 نوفمبر 2025</small>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot active">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tooltip-text">بدأ جمع التمويل من المستثمرين</div>
+                    <h5 class="fw-bold mb-1">مفتوح للاستثمار</h5>
+                    <small class="text-muted d-block">08 نوفمبر 2025</small>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tooltip-text">سيتم إكمال التمويل عند جمع المبلغ المطلوب</div>
+                    <h5 class="fw-bold mb-1">ممول بالكامل</h5>
+                    <small class="text-muted d-block">--</small>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="tooltip-text">سيبدأ السداد وفقاً لجدول الأقساط المتفق عليه</div>
+                    <h5 class="fw-bold mb-1">في مرحلة السداد</h5>
+                    <small class="text-muted d-block">--</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repayment Section -->
+        <h3 class="section-title">جدول الأقساط</h3>
+        <div class="repayment-alert show">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+                <div>
+                    <strong>⚠️ لديك دفعة متأخرة منذ 3 أيام.</strong>
+                </div>
+            </div>
+        </div>
+        <div class="project-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 class="mb-1" style="color: #0f172a;">مشروع توصيل طعام</h4>
+                    <p class="text-muted mb-0">إجمالي المبلغ: 80,000 ريال</p>
+                </div>
+                <div class="text-end">
+                    <div class="fw-bold fs-5">💳 إجمالي المبالغ المسددة: 8,000 ريال</div>
+                    <div class="text-success fw-bold fs-5">💰 المتبقي: 72,000 ريال</div>
+                </div>
+            </div>
+            <!-- Repayment progress bar -->
+            <div class="repayment-summary">
+                <div class="repayment-summary-fill"></div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>رقم الدفعة</th>
+                            <th>تاريخ السداد</th>
+                            <th>تاريخ الدفع الفعلي</th>
+                            <th>المبلغ</th>
+                            <th>الأيام المتبقية</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">1</td>
+                            <td>1 / 12 / 2025</td>
+                            <td>3 / 12 / 2025</td>
+                            <td>4,000 ريال</td>
+                            <td>--</td>
+                            <td><span class="repayment-status status-paid">تم الدفع ✅</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">2</td>
+                            <td>1 / 1 / 2026</td>
+                            <td>--</td>
+                            <td>4,000 ريال</td>
+                            <td><span class="days-left">18 يوم</span></td>
+                            <td><span class="repayment-status status-pending">بانتظار الدفع 🔄</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">3</td>
+                            <td>1 / 2 / 2026</td>
+                            <td>--</td>
+                            <td>4,000 ريال</td>
+                            <td><span class="days-left">48 يوم</span></td>
+                            <td><span class="repayment-status status-pending">بانتظار الدفع 🔄</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Support Chat Section -->
+        <h3 class="section-title">المراسلات</h3>
+        <div class="project-card">
+            <div class="d-flex align-items-center mb-4">
+                <div class="avatar me-3" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">اد</div>
+                <div>
+                    <h5 class="mb-0" style="color: #0f172a;">إدارة الدعم الفني</h5>
+                    <small class="text-success"><i class="fas fa-circle me-1"></i> متصل الآن</small>
+                </div>
+                <div class="ms-auto">
+                    <button class="btn btn-primary px-4 py-2">
+                        <i class="fas fa-comment-dots me-2"></i> ابدأ محادثة جديدة
+                    </button>
+                </div>
+            </div>
+            <div class="d-flex flex-column"
+                style="min-height: 250px; max-height: 350px; overflow-y: auto; padding: 1.5rem; background: #f8fafc; border-radius: 18px; margin-bottom: 1.5rem;">
+                <div class="chat-message message-received auto-reply">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>نظام إقراضك</strong>
+                        <small class="text-muted">10:30</small>
+                    </div>
+                    <p class="mb-0">مرحبًا بك في دعم إقراضك! اختر نوع الاستفسار لنوصل رسالتك للقسم المناسب.</p>
+                </div>
+                <div class="chat-message message-received">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>إدارة الدعم</strong>
+                        <small class="text-muted">10:30</small>
+                    </div>
+                    <p class="mb-0">مرحبًا أحمد، كيف يمكننا مساعدتك اليوم؟</p>
+                </div>
+                <div class="chat-message message-sent">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>أنت</strong>
+                        <small class="text-white-50">10:32</small>
+                    </div>
+                    <p class="mb-0">أريد الاستفسار عن حالة مشروع توصيل الطعام</p>
+                </div>
+                <div class="chat-message message-received">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <strong>إدارة الدعم</strong>
+                        <small class="text-muted">10:33</small>
+                    </div>
+                    <p class="mb-0">مشروعك تم تمويله بالكامل وسيبدأ جدول السداد في 1 ديسمبر. هل هناك شيء آخر؟</p>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control py-3" placeholder="اكتب رسالتك...">
+                <button class="btn btn-outline-secondary py-3 px-3" title="رفع ملف">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="btn btn-primary py-3 px-4">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">إقراضك</h5>
+                    <p class="text-white-50">منصة تمويل رقمية تربط بين المقترضين والمستثمرين</p>
+                    <div class="verified-badge">
+                        <i class="fas fa-check-circle"></i> موثوق من الجهات الرسمية
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#"><i class="fas fa-plus-circle me-2"></i> قدّم مشروعك الجديد</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-file-contract me-2"></i> سياسات الإقراض</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-headset me-2"></i> الدعم الفني</a></li>
+                        <li class="mb-2"><a href="#"><i class="fas fa-sitemap me-2"></i> خريطة الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">تواصل معنا</h5>
+                    <p class="text-white-50">
+                        <i class="fas fa-envelope me-2"></i> support@iqradak.com<br>
+                        <i class="fas fa-phone me-2"></i> 920000000
+                    </p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5 class="mb-3">النشرة البريدية</h5>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                        <button class="btn btn-light" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <small class="text-white-50 mt-2">اشترك للحصول على أحدث التحديثات</small>
+                </div>
+            </div>
+            <div class="border-top border-white-50 pt-3 text-center">
+                <p class="text-white-50 mb-0">© 2025 إقراضك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">دليل تقديم المشروع</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 36px; height: 36px;">1</div>
+                                <div>
+                                    <h6 class="mb-1">املأ نموذج المشروع</h6>
+                                    <p class="text-muted small mb-0">أدخل جميع تفاصيل مشروعك بدقة</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 36px; height: 36px;">2</div>
+                                <div>
+                                    <h6 class="mb-1">ارفع المستندات المطلوبة</h6>
+                                    <p class="text-muted small mb-0">السجل التجاري، خطة العمل، وثائق الضمان</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 36px; height: 36px;">3</div>
+                                <div>
+                                    <h6 class="mb-1">انتظر المراجعة</h6>
+                                    <p class="text-muted small mb-0">سيتم مراجعة طلبك خلال 48 ساعة عمل</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 36px; height: 36px;">4</div>
+                                <div>
+                                    <h6 class="mb-1">ابدأ مرحلة التمويل</h6>
+                                    <p class="text-muted small mb-0">سيتم عرض مشروعك للمستثمرين</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">فهمت!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="notification-panel" id="notificationsPanel">
+        <div class="p-4 border-bottom"
+            style="background: linear-gradient(135deg, var(--primary-gradient-start), var(--primary-gradient-end)); color: white;">
+            <h5 class="mb-0">التنبيهات</h5>
+            <button class="btn text-white float-end p-0" id="closeNotifications" style="font-size: 1.2rem;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-4">
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-success" style="width: 48px; height: 48px; font-size: 1.2rem;">ت</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">تمت الموافقة على مشروعك التعليمي</h6>
+                        <p class="text-muted mb-1">تمت الموافقة على مشروع "منصة تعليمية" وتم تحويله لمرحلة التمويل.</p>
+                        <small class="text-muted">اليوم، 14:30</small>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-warning" style="width: 48px; height: 48px; font-size: 1.2rem;">ت</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">تذكير: موعد دفع القسط الأول غدًا</h6>
+                        <p class="text-muted mb-1">يرجى التأكد من توفر الرصيد الكافي لدفع قسط مشروع "توصيل طعام".</p>
+                        <small class="text-muted">أمس، 09:15</small>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="avatar bg-primary" style="width: 48px; height: 48px; font-size: 1.2rem;">ت</div>
+                    </div>
+                    <div>
+                        <h6 class="mb-2 fw-bold">مشروعك تم تمويله بنسبة 100%</h6>
+                        <p class="text-muted mb-1">مبروك! تم جمع المبلغ المطلوب بالكامل لمشروع "توصيل طعام".</p>
+                        <small class="text-muted">08 نوفمبر 2025</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Funding Modal -->
+    <div class="modal fade" id="fundingModal" tabindex="-1" aria-labelledby="fundingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fundingModalLabel">نموذج طلب التمويل</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-4">
+                            <label for="projectName" class="form-label fw-bold">🏷️ اسم المشروع</label>
+                            <input type="text" class="form-control form-control-lg" id="projectName" required>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="sector" class="form-label fw-bold">🏭 نوع القطاع</label>
+                                <select class="form-select form-select-lg" id="sector" required>
+                                    <option value="">اختر القطاع</option>
+                                    <option value="tech">تكنولوجيا</option>
+                                    <option value="retail">تجاري</option>
+                                    <option value="food">مطاعم وخدمات طعام</option>
+                                    <option value="services">خدمات</option>
+                                    <option value="education">تعليمي</option>
+                                    <option value="medical">طبي</option>
+                                    <option value="agricultural">زراعي</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="amount" class="form-label fw-bold">💰 المبلغ المطلوب (ريال)</label>
+                                <input type="number" class="form-control form-control-lg" id="amount" min="1000"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="duration" class="form-label fw-bold">⏳ مدة السداد (أشهر)</label>
+                                <select class="form-select form-select-lg" id="duration" required>
+                                    <option value="6">6 أشهر</option>
+                                    <option value="12">12 شهر</option>
+                                    <option value="18">18 شهر</option>
+                                    <option value="24">24 شهر</option>
+                                    <option value="36">36 شهر</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="guarantee" class="form-label fw-bold">🧾 نوع الضمان</label>
+                                <select class="form-select form-select-lg" id="guarantee" required>
+                                    <option value="">اختر نوع الضمان</option>
+                                    <option value="personal">ضمان شخصي</option>
+                                    <option value="real_estate">عقار</option>
+                                    <option value="vehicle">مركبة</option>
+                                    <option value="equipment">معدات</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="form-label fw-bold">🖋️ وصف مختصر للمشروع</label>
+                            <textarea class="form-control form-control-lg" id="description" rows="4"
+                                required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="projectImage" class="form-label fw-bold">🖼️ رفع صورة المشروع (اختياري)</label>
+                            <input type="file" class="form-control" id="projectImage" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-primary btn-lg" id="submitProjectBtn">إرسال الطلب
+                        للمراجعة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-body py-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+                    </div>
+                    <h3 class="mb-3">تم إرسال مشروعك بنجاح!</h3>
+                    <p class="text-muted fs-5">سيتم مراجعة طلبك خلال 48 ساعة، وستصلك إشعارات بالتحديثات.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0">
+                    <button type="button" class="btn btn-primary btn-lg px-5" data-bs-dismiss="modal">حسنًا</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated counters
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target.toLocaleString('ar-SA');
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.ceil(current).toLocaleString('ar-SA');
+                    }
+                }, 16);
+            });
+        }
+
+        // Toggle notifications panel
+        document.getElementById('notificationsBtn').addEventListener('click', function () {
+            document.getElementById('notificationsPanel').classList.add('show');
+        });
+
+        document.getElementById('closeNotifications').addEventListener('click', function () {
+            document.getElementById('notificationsPanel').classList.remove('show');
+        });
+
+        // Close notifications panel when clicking outside
+        document.addEventListener('click', function (event) {
+            const notificationsPanel = document.getElementById('notificationsPanel');
+            const notificationsBtn = document.getElementById('notificationsBtn');
+
+            if (!notificationsPanel.contains(event.target) &&
+                !notificationsBtn.contains(event.target) &&
+                notificationsPanel.classList.contains('show')) {
+                notificationsPanel.classList.remove('show');
+            }
+        });
+
+        // Show/hide notifications dropdown on hover
+        const notificationsBtn = document.getElementById('notificationsBtn');
+        const notificationsDropdown = notificationsBtn.querySelector('.dropdown-menu');
+
+        notificationsBtn.addEventListener('mouseenter', function () {
+            notificationsDropdown.style.display = 'block';
+        });
+
+        notificationsBtn.addEventListener('mouseleave', function () {
+            notificationsDropdown.style.display = 'none';
+        });
+
+        // Submit project form
+        document.getElementById('submitProjectBtn').addEventListener('click', function () {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> جاري الإرسال...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                const fundingModal = bootstrap.Modal.getInstance(document.getElementById('fundingModal'));
+                fundingModal.hide();
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            }, 2000);
+        });
+
+        // Initialize counters when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            animateCounters();
+        });
+
+        // Filter buttons functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

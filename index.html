@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="منصة إقراضك للإقراض الجماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة.">
+    <meta name="keywords" content="تمويل جماعي, استثمار, إقراض, مشاريع, أرباح آمنة, إقراضك">
+    <meta name="author" content="إقراضك">
+    <meta property="og:title" content="إقراضك | استثمر في مشاريع حقيقية بأرباح آمنة">
+    <meta property="og:description"
+        content="منصة إقراضك للإقراض الجماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة.">
+    <meta property="og:image" content="https://tamkeen.com/og-image.jpg">
+    <meta property="og:url" content="https://tamkeen.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="إقراضك | استثمر في مشاريع حقيقية بأرباح آمنة">
+    <meta name="twitter:description"
+        content="منصة إقراضك للإقراض الجماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة.">
+    <meta name="twitter:image" content="https://tamkeen.com/og-image.jpg">
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+    <title>إقراضك | استثمر في مشاريع حقيقية بأرباح آمنة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.media.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-icon">
+                <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+            </div>
+            <h3>جاري تحميل منصة إقراضك...</h3>
+        </div>
+    </div>
+    <!-- Notification Bar -->
+    <div class="notification-bar" id="notificationBar">
+        <i class="fas fa-bullhorn" aria-hidden="true"></i> <span class="scrolling-text">مشروع جديد تمت الموافقة عليه!
+            "منصة تعليمية ذكية" تبحث عن تمويل.</span>
+    </div>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon" aria-label="شعار منصة تمكين">
+                        <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                    </div>
+                    <div class="logo-text">إقراضك</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="active">الرئيسية</a>
+                    <a href="#">المشاريع</a>
+                    <a href="#">كيف يعمل</a>
+                    <a href="#">مركز المساعدة</a>
+                </div>
+                <div class="nav-buttons">
+                    <div class="user-profile" id="userProfile" aria-label="حسابي" role="button">
+                        <div class="profile-icon" aria-hidden="true">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-tachometer-alt" aria-hidden="true"></i> لوحة التحكم
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-cog" aria-hidden="true"></i> إعداداتي
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt" aria-hidden="true"></i> تسجيل الخروج
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">ابدأ الآن</a>
+                    <div class="auth-links">
+                        <a href="#" class="open-auth" data-tab="register">التسجيل</a>
+                    </div>
+                    <div class="language-dropdown">
+                        <button class="lang-toggle" aria-label="تبديل اللغة">
+                            <i class="fas fa-globe" aria-hidden="true"></i>
+                        </button>
+                        <div class="lang-menu">
+                            <div class="lang-option active" data-lang="ar" role="button">العربية</div>
+                            <div class="lang-option" data-lang="en" role="button">English</div>
+                        </div>
+                    </div>
+                    <div class="dark-mode-toggle" id="darkModeToggle" aria-label="الوضع الليلي" role="button"></div>
+                    <div class="notification-bell" aria-label="الإشعارات" role="button">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="notification-badge" aria-label="3 إشعارات جديدة">3</span>
+                    </div>
+                    <div class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="القائمة" role="button">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- Mobile Menu (inserted for small/medium screens) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog">
+        <div class="mobile-menu-content">
+            <div class="mobile-close" id="mobileMenuClose" aria-label="إغلاق القائمة" role="button">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="#">الرئيسية</a>
+                <a href="#">المشاريع</a>
+                <a href="#">كيف يعمل</a>
+                <a href="#">مركز المساعدة</a>
+            </nav>
+            <div class="mobile-nav-buttons">
+                <a href="#" class="btn btn-primary">ابدأ الآن</a>
+                <div class="auth-links">
+                    <a href="#" class="open-auth" data-tab="login">تسجيل الدخول</a>
+                    <a href="#" class="open-auth" data-tab="register">التسجيل</a>
+                </div>
+                <div class="mobile-lang" style="margin-top:16px; display:flex; gap:8px;">
+                    <button class="lang-option" data-lang="ar" aria-label="عربية">العربية</button>
+                    <button class="lang-option" data-lang="en" aria-label="English">EN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>استثمر في مشاريع حقيقية وحقق أرباحًا آمنة</h1>
+                <p class="hero-subtitle">منصة إقراض جماعي تربط المستثمرين بأصحاب المشاريع المبتكرة لخلق فرص نمو مشتركة
+                </p>
+                <p class="hero-target">منصة إقراضك تربط المستثمرين برواد الأعمال لتوفير تمويل آمن ومربح للطرفين.</p>
+                <div class="hero-buttons">
+                    <a href="investor.html" class="btn btn-hero btn-primary">ابدأ الاستثمار الآن</a>
+                    <a href="#" class="btn btn-hero btn-outline" id="applyProjectBtn">قدّم مشروعك</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Stats Banner -->
+    <div class="stats-banner">
+        <div class="stat-item">
+            <div class="stat-icon projects">
+                <i class="fas fa-briefcase" aria-hidden="true"></i>
+            </div>
+            <div class="stat-number" id="projectsCount">1,200+</div>
+            <div class="stat-label">مشاريع ممولة</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon users">
+                <i class="fas fa-users" aria-hidden="true"></i>
+            </div>
+            <div class="stat-number" id="investorsCount">10,000+</div>
+            <div class="stat-label">مستثمر نشط</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon money">
+                <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+            </div>
+            <div class="stat-number" id="fundingCount">50M+</div>
+            <div class="stat-label">ريال تم تمويلها</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-icon success">
+                <i class="fas fa-star" aria-hidden="true"></i>
+            </div>
+            <div class="stat-number" id="successRate">95%</div>
+            <div class="stat-label">معدل النجاح</div>
+        </div>
+    </div>
+    <!-- Search and Filter Section -->
+    <section class="search-section">
+        <div class="search-controls">
+            <div class="search-input">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input type="text" placeholder="ابحث عن مشروع..." id="searchInput">
+            </div>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-fire" aria-hidden="true"></i> الكل
+                </button>
+                <button class="filter-btn" data-filter="agriculture">
+                    <i class="fas fa-seedling" aria-hidden="true"></i> الزراعة
+                </button>
+                <button class="filter-btn" data-filter="health">
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i> الصحة
+                </button>
+                <button class="filter-btn" data-filter="education">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> التعليم
+                </button>
+                <button class="filter-btn" data-filter="food">
+                    <i class="fas fa-utensils" aria-hidden="true"></i> الطعام
+                </button>
+                <button class="filter-btn" data-filter="12">
+                    <i class="fas fa-clock" aria-hidden="true"></i> 12 شهر
+                </button>
+                <button class="filter-btn" data-filter="24">
+                    <i class="fas fa-clock" aria-hidden="true"></i> 24 شهر
+                </button>
+                <button class="filter-btn" data-filter="8-10">
+                    <i class="fas fa-percentage" aria-hidden="true"></i> 8-10%
+                </button>
+                <button class="filter-btn" data-filter="partial">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i> ممولة جزئيًا
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Active Projects Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المشاريع النشطة</h2>
+                <p class="section-subtitle">اكتشف مشاريع مبتكرة تبحث عن تمويل وكن جزءاً من نجاحها</p>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded by JavaScript -->
+            </div>
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <h3>لا توجد مشاريع مطابقة</h3>
+                <p>لا توجد مشاريع تطابق معايير البحث الخاصة بك. جرّب تغيير الفلاتر.</p>
+                <button class="btn btn-primary" style="margin-top: 20px;" onclick="resetFilters()">إعادة تعيين
+                    الفلاتر</button>
+            </div>
+        </div>
+    </section>
+    <!-- Mid CTA Section -->
+    <section class="mid-cta">
+        <div class="mid-cta-illustration" aria-hidden="true">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="mid-cta-content">
+            <h2 class="mid-cta-title">ابدأ الاستثمار الآن</h2>
+            <p class="mid-cta-subtitle">انضم إلى آلاف المستثمرين الذين يحققون أرباحًا من خلال دعم المشاريع المبتكرة</p>
+            <a href="#" class="btn btn-primary mid-cta-btn">ابدأ الاستثمار الآن</a>
+        </div>
+    </section>
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-logos">
+                <img src="https://placehold.co/120x40/1e3a8a/ffffff?text=SSL+Secured" alt="SSL Secured"
+                    class="trust-logo">
+                <img src="https://placehold.co/120x40/0ea5e9/ffffff?text=Encrypted" alt="Encrypted" class="trust-logo">
+                <img src="https://placehold.co/120x40/10b981/ffffff?text=KYC+Verified" alt="KYC Verified"
+                    class="trust-logo">
+                <img src="https://placehold.co/120x40/f59e0b/ffffff?text=AML+Compliant" alt="AML Compliant"
+                    class="trust-logo">
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">آراء المستثمرين</h2>
+                <p class="section-subtitle">hear what our investors say about their experience with Tamkeen</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonials-slider" id="testimonialsSlider">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-rating" aria-hidden="true">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-content">استثماري في منصة إقراضك كان أفضل قرار اتخذته هذا العام. العوائد
+                            ممتازة والمنصة آمنة جداً.</p>
+                        <div class="testimonial-author">سارة عبدالله</div>
+                        <div class="testimonial-project">مستثمر منذ 2023</div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-rating" aria-hidden="true">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-content">تجربتي مع التمويل الجماعي عبر إقراضك كانت رائعة. الدعم الفني
+                            ممتاز
+                            والمشاريع مختارة بعناية.</p>
+                        <div class="testimonial-author">محمد أحمد</div>
+                        <div class="testimonial-project">مستثمر منذ 2022</div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-rating" aria-hidden="true">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-content">كصاحب مشروع، وجدت في إقراضك الشريك المثالي لتمويل فكرتي. العملية
+                            كانت سلسة والدعم مستمر.</p>
+                        <div class="testimonial-author">ليلى خالد</div>
+                        <div class="testimonial-project">صاحبة مشروع "مطعم صحي"</div>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" data-slide="0"></div>
+                    <div class="carousel-dot" data-slide="1"></div>
+                    <div class="carousel-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Education Section -->
+    <section class="education-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">التوعية المالية</h2>
+                <p class="section-subtitle">تعلم المزيد عن التمويل الجماعي والاستثمار الآمن</p>
+            </div>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="education-title">ما هو التمويل الجماعي؟</h3>
+                    <p class="education-content">التمويل الجماعي هو طريقة لجمع الأموال من عدد كبير من الأشخاص لدعم مشروع
+                        أو فكرة مبتكرة عبر الإنترنت.</p>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="education-title">الأمان والحماية</h3>
+                    <p class="education-content">نستخدم تقنيات تشفير متقدمة ونعمل مع شركات دفع عالمية لضمان أمان
+                        معاملاتك المالية.</p>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="education-title">إدارة المخاطر</h3>
+                    <p class="education-content">تعلم كيفية تنويع استثماراتك وتقليل المخاطر لتحقيق أفضل العوائد على
+                        المدى الطويل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">الأسئلة الشائعة</h2>
+                <p class="section-subtitle">إجابات على أكثر الأسئلة شيوعاً حول منصة إقراضك</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        كيف أبدأ الاستثمار في المشاريع؟
+                        <i class="fas fa-chevron-down faq-toggle" aria-hidden="true"></i>
+                    </div>
+                    <div class="faq-answer">
+                        للبدء في الاستثمار، ستحتاج أولاً إلى إنشاء حساب على منصة إقراضك والتحقق من هويتك. بعد ذلك، يمكنك
+                        تصفح المشاريع المتاحة واختيار المشروع الذي يناسب معاييرك الاستثمارية. قم بتحديد المبلغ الذي ترغب
+                        في استثماره واتبع خطوات الدفع الآمنة عبر Stripe.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        هل الأرباح مضمونة في منصة الإقراض الجماعي؟
+                        <i class="fas fa-chevron-down faq-toggle" aria-hidden="true"></i>
+                    </div>
+                    <div class="faq-answer">
+                        بينما نعمل على تقييم دقيق لجميع المشاريع قبل عرضها على المنصة، إلا أن الاستثمار ينطوي على مخاطر.
+                        نوفر تقييمات مخاطر شفافة لكل مشروع وننصح المستثمرين بتنويع استثماراتهم لتقليل المخاطر. ومع ذلك،
+                        لا يمكن ضمان الأرباح بنسبة 100%.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        كيف تتم عملية السداد للمستثمرين؟
+                        <i class="fas fa-chevron-down faq-toggle" aria-hidden="true"></i>
+                    </div>
+                    <div class="faq-answer">
+                        يتم سداد الأقساط تلقائياً من حساب المقترض إلى محفظة المستثمر وفقاً لجدول السداد المتفق عليه.
+                        يمكن للمستثمرين سحب أرباحهم في أي وقت بعد تراكم مبلغ معين في محفظتهم، أو الاحتفاظ بها للاستثمار
+                        في مشاريع جديدة.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ما هي شروط تقديم مشروع للتمويل؟
+                        <i class="fas fa-chevron-down faq-toggle" aria-hidden="true"></i>
+                    </div>
+                    <div class="faq-answer">
+                        لتقديم مشروع للتمويل، يجب أن يكون لديك خطة عمل واضحة، سجل تجاري ساري المفعول، وضمانات كافية. كما
+                        نطلب وثائق مالية وشرح مفصل عن المشروع والغرض من التمويل. يخضع كل مشروع لتقييم دقيق من قبل فريقنا
+                        قبل الموافقة عليه.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bottom CTA Section -->
+    <section class="bottom-cta">
+        <div class="container">
+            <h2 class="bottom-cta-title">هل لديك فكرة مشروع؟</h2>
+            <p class="bottom-cta-subtitle">ابدأ الآن بتقديم طلب تمويل لمشروعك.</p>
+            <a href="#" class="btn btn-primary bottom-cta-btn" id="applyProjectBtn2">قدّم مشروعك الآن</a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon" aria-label="شعار تمكين">
+                            <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                        </div>
+                        <div class="footer-logo-text">إقراضك</div>
+                    </div>
+                    <p class="footer-description">
+                        منصة إقراض جماعي تهدف إلى إقراضك رواد الأعمال والمبتكرين في المجتمع العربي من خلال دعم مشاريعهم
+                        المبتكرة.
+                    </p>
+                    <p class="footer-description" style="font-weight: 600; color: var(--warning);">
+                        <i class="fas fa-gavel" aria-hidden="true"></i> تعمل وفق معايير التمويل الجماعي وتحت إشراف هيئة
+                        التمويل الرقمي
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="تويتر">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="فيسبوك">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="إنستغرام">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="لينكدإن">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <a href="#" class="contact-btn">اتصل بنا</a>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title"><i class="fas fa-bolt" aria-hidden="true"></i> روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> المشاريع</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> كيف يعمل</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> عن إقراضك</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title"><i class="fas fa-headset" aria-hidden="true"></i> الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> اتصل بنا</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> مركز المساعدة</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> التقارير</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> دليل المستخدم</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title"><i class="fas fa-file-contract" aria-hidden="true"></i> القانونية</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> سياسة الخصوصية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> شروط الاستخدام</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> إخلاء المسؤولية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> سياسة مكافحة غسيل
+                                الأموال</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> شروط التمويل</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> الشفافية المالية</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-left" aria-hidden="true"></i> إفصاح المخاطر</a></li>
+                    </ul>
+                    <div class="newsletter">
+                        <h4>اشترك في النشرة البريدية</h4>
+                        <p>احصل على آخر المشاريع وفرص التمويل مباشرة في بريدك</p>
+                        <div class="newsletter-input">
+                            <input type="email" placeholder="بريدك الإلكتروني" aria-label="بريدك الإلكتروني">
+                        </div>
+                        <button>الاشتراك الآن</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="footer-mini-logo" aria-label="شعار تمكين">
+                    <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                </div>
+                <p>&copy; 2025 إقراضك. جميع الحقوق محفوظة.</p>
+                <div class="ssl-secure">
+                    <i class="fas fa-lock" aria-hidden="true"></i> SSL Secure
+                </div>
+            </div>
+            <div class="risk-disclaimer">
+                قد ينطوي الاستثمار على مخاطر مالية. المشاريع الممولة لا تضمن عوائد محددة وقد تفقد جزءًا أو كل رأس المال
+                المستثمر.
+                <a href="#" class="risk-link">اقرأ سياسة إدارة المخاطر الكاملة</a>.
+            </div>
+        </div>
+    </footer>
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()" aria-label="إغلاق">&times;</span>
+            <div id="projectDetailsContent">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content payment-modal">
+            <span class="close" onclick="closePaymentModal()" aria-label="إغلاق">&times;</span>
+            <div class="modal-header">استثمار في المشروع</div>
+            <div class="modal-body">
+                <div class="payment-form">
+                    <div class="form-group">
+                        <label for="investAmount">مبلغ الاستثمار (الحد الأدنى 1,000 ريال)</label>
+                        <input type="number" id="investAmount" min="1000" value="5000" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="expectedReturn">العائد المتوقع</label>
+                        <input type="text" id="expectedReturn" value="400 ريال شهرياً (8% سنوياً)" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardNumber">رقم البطاقة</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="expiryDate">تاريخ الانتهاء</label>
+                            <input type="text" id="expiryDate" placeholder="MM/YY" aria-required="true">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123" aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardName">اسم صاحب البطاقة</label>
+                            <input type="text" id="cardName" aria-required="true">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 20px;"
+                        onclick="processPayment()">إتمام الدفع</button>
+                </div>
+                <div class="stripe-notice" aria-label="أمان الدفع">
+                    <i class="fab fa-cc-stripe" aria-hidden="true"></i> الدفع آمن عبر Stripe
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Apply Project Modal -->
+    <div id="applyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeApplyModal()" aria-label="إغلاق">&times;</span>
+            <div class="modal-header">قدّم مشروعك للتمويل</div>
+            <div class="modal-body">
+                <form class="apply-form">
+                    <div class="form-group">
+                        <label for="projectName">اسم المشروع</label>
+                        <input type="text" id="projectName" placeholder="أدخل اسم مشروعك" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sector">القطاع</label>
+                        <select id="sector" required>
+                            <option value="">اختر القطاع</option>
+                            <option value="agriculture">الزراعة</option>
+                            <option value="health">الصحة</option>
+                            <option value="education">التعليم</option>
+                            <option value="technology">التقنية</option>
+                            <option value="food">الطعام</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">المبلغ المطلوب (ريال)</label>
+                        <input type="number" id="amount" placeholder="50000" min="10000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">مدة السداد (أشهر)</label>
+                        <select id="duration" required>
+                            <option value="">اختر المدة</option>
+                            <option value="12">12 شهر</option>
+                            <option value="24">24 شهر</option>
+                            <option value="36">36 شهر</option>
+                            <option value="48">48 شهر</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guarantee">الضمان</label>
+                        <input type="text" id="guarantee" placeholder="اشرح الضمان المقدم" required>
+                    </div>
+                    <div class="form-group full">
+                        <label for="description">وصف مختصر</label>
+                        <textarea id="description" placeholder="صف مشروعك بالتفصيل، الغرض من التمويل، وخطتك للنمو..."
+                            required></textarea>
+                    </div>
+                    <div class="form-group full">
+                        <label for="attachments">المرفقات</label>
+                        <div class="form-file" onclick="document.getElementById('fileInput').click()" role="button">
+                            <i class="fas fa-cloud-upload-alt"
+                                style="font-size: 24px; margin-bottom: 8px; color: var(--gray-500);"
+                                aria-hidden="true"></i>
+                            <p>اضغط لتحميل الملفات (PDF, DOC, JPG)</p>
+                            <input type="file" id="fileInput" style="display: none;" multiple>
+                        </div>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="contact">وسيلة تواصل</label>
+                        <input type="text" id="contact" placeholder="رقم الجوال أو البريد الإلكتروني" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">إرسال
+                        الطلب</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- User Type Modal -->
+    <!-- Auth Modal (Login / Register) -->
+    <div id="authModal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="authModalLabel">
+        <div class="modal-content auth-modal">
+            <span class="close" onclick="closeAuthModal()" aria-label="إغلاق">&times;</span>
+            <div class="auth-tabs" style="display:flex; gap:8px; justify-content:center; margin-bottom:12px;">
+                <button type="button" class="tab-btn active" data-tab="login" id="authTabLogin">تسجيل الدخول</button>
+                <button type="button" class="tab-btn" data-tab="register" id="authTabRegister">إنشاء حساب</button>
+            </div>
+            <div class="auth-body">
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="loginEmail">البريد الإلكتروني</label>
+                        <input id="loginEmail" type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">كلمة المرور</label>
+                        <input id="loginPassword" type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; margin-top:12px;">تسجيل
+                        الدخول</button>
+                    <div style="text-align:center; margin-top:8px; font-size:0.95rem;">
+                        <a href="#" id="toRegister" style="text-decoration:underline;">إنشاء حساب جديد</a>
+                    </div>
+                </form>
+
+                <form id="registerForm" class="auth-form" style="display:none;">
+                    <div class="form-group">
+                        <label for="regName">الاسم الكامل</label>
+                        <input id="regName" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">البريد الإلكتروني</label>
+                        <input id="regEmail" type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">رقم الجوال</label>
+                        <input id="regPhone" type="tel" placeholder="05xxxxxxxx" pattern="[0-9+\-\s]{8,20}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">كلمة المرور</label>
+                        <input id="regPassword" type="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword2">تأكيد كلمة المرور</label>
+                        <input id="regPassword2" type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; margin-top:12px;">إنشاء
+                        حساب</button>
+                    <div style="text-align:center; margin-top:8px; font-size:0.95rem;">
+                        <a href="#" id="toLogin" style="text-decoration:underline;">لديك حساب؟ تسجيل الدخول</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="userTypeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUserTypeModal()" aria-label="إغلاق">&times;</span>
+            <div class="modal-header">
+                <h2>مرحباً بك في منصة إقراضك</h2>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; margin-bottom: 24px; font-size: 18px;">كيف تريد استخدام المنصة؟</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="selectUserType('investor')" aria-label="أنا مستثمر">أنا
+                        مستثمر</button>
+                    <button class="btn btn-outline" onclick="selectUserType('borrower')" aria-label="أنا مقترض">أنا
+                        مقترض</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Floating Action Button -->
+    <div class="floating-btn" id="chatWidgetBtn" aria-label="دردشة مع مستشار">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+    </div>
+    <!-- Scroll to Top -->
+    <div class="scroll-to-top" id="scrollTop" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </div>
+    <!-- Chat Widget -->
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header" onclick="toggleChatBody()" aria-label="دردشة مع مستشار">
+            <i class="fas fa-robot" aria-hidden="true"></i>
+            <span>مستشار التمويل الذكي</span>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <p style="margin-bottom: 16px; color: var(--gray-600);">مرحباً! كيف يمكنني مساعدتك اليوم؟</p>
+            <div class="chat-options">
+                <div class="chat-option" onclick="selectChatOption('invest')" role="button">أرغب في الاستثمار</div>
+                <div class="chat-option" onclick="selectChatOption('loan')" role="button">أرغب في التقديم على قرض</div>
+                <div class="chat-option" onclick="selectChatOption('help')" role="button">أحتاج مساعدة عامة</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // === Existing JavaScript from your file ===
+        // Preloader
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+        }
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Sticky header on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Profile dropdown toggle
+        const userProfile = document.getElementById('userProfile');
+        const profileDropdown = document.getElementById('profileDropdown');
+        userProfile.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!userProfile.contains(e.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // NOTE: FAQ handling moved to the bottom IIFE which also adds accessibility attributes
+
+        // Mock real-time funding updates
+        function updateFundingProgress() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const currentWidth = parseFloat(bar.style.width);
+                if (currentWidth < 100) {
+                    const newWidth = Math.min(currentWidth + 0.05, 100);
+                    bar.style.width = newWidth + '%';
+                }
+            });
+        }
+        setInterval(updateFundingProgress, 3000);
+
+        // Dynamic notification messages
+        const notificationMessages = [
+            'مشروع جديد تمت الموافقة عليه! "منصة تعليمية ذكية" تبحث عن تمويل.',
+            'تم تمويل مشروع "مزرعة عضوية" بالكامل! شكرًا لجميع المستثمرين.',
+            'فرصة استثمار جديدة: "تطبيق صحي" يبحث عن 100,000 ريال.',
+            'تم سداد قسط جديد لمشروع "مطعم صحي" - شكراً لدعمكم المستمر!',
+            'تم الوصول إلى 80% تمويل لمشروع "مختبر تقني"!'
+        ];
+        const notificationBar = document.getElementById('notificationBar');
+        let currentMessageIndex = 0;
+        setInterval(() => {
+            currentMessageIndex = (currentMessageIndex + 1) % notificationMessages.length;
+            notificationBar.innerHTML = `<i class="fas fa-bullhorn" aria-hidden="true"></i> ${notificationMessages[currentMessageIndex]}`;
+        }, 8000);
+
+        // Filter functionality with empty state
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectsGrid = document.getElementById('projectsGrid');
+        const emptyState = document.getElementById('emptyState');
+
+        // Mock projects data
+        const projects = [
+            {
+                id: 1,
+                title: "مزرعة عضوية ذكية",
+                purpose: "مشروع زراعي عضوي باستخدام تقنيات الري الذكية لتوفير منتجات صحية للمجتمع المحلي",
+                category: "agriculture",
+                amount: 50000,
+                raised: 40000,
+                interest: "8%",
+                duration: "24",
+                guarantee: "عقاري",
+                image: "img/SmartFarm.jpg",
+                icon: "fas fa-seedling"
+            },
+            {
+                id: 2,
+                title: "منصة تعليمية رقمية",
+                purpose: "تطوير منصة تعليمية عربية تفاعلية للأطفال لتعلم المهارات الأساسية عبر الإنترنت",
+                category: "education",
+                amount: 75000,
+                raised: 45000,
+                interest: "10%",
+                duration: "36",
+                guarantee: "تجاري",
+                image: "img/ELearning.jpg",
+                icon: "fas fa-graduation-cap"
+            },
+            {
+                id: 3,
+                title: "مطعم صحي محلي",
+                purpose: "افتتاح مطعم يقدم وجبات صحية وعضوية بأسعار معقولة للمجتمع المحلي",
+                category: "food",
+                amount: 120000,
+                raised: 84000,
+                interest: "12%",
+                duration: "48",
+                guarantee: "عقاري",
+                image: "img/HealthyFood.jpg",
+                icon: "fas fa-utensils"
+            }
+        ];
+
+        // Render projects
+        function renderProjects(filter = 'all') {
+            projectsGrid.innerHTML = '';
+            let filteredProjects = projects;
+
+            if (filter !== 'all') {
+                // Handle different filter types
+                if (filter === '12' || filter === '24') {
+                    filteredProjects = projects.filter(p => p.duration === filter);
+                } else if (filter === '8-10') {
+                    filteredProjects = projects.filter(p => p.interest === '8%' || p.interest === '10%');
+                } else if (filter === 'partial') {
+                    filteredProjects = projects.filter(p => (p.raised / p.amount) < 1);
+                } else {
+                    filteredProjects = projects.filter(p => p.category === filter);
+                }
+            }
+
+            if (filteredProjects.length === 0) {
+                emptyState.style.display = 'block';
+                projectsGrid.style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                projectsGrid.style.display = 'grid';
+                filteredProjects.forEach(project => {
+                    const percentage = Math.round((project.raised / project.amount) * 100);
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+                    card.innerHTML = `
+                        <div class="project-thumbnail">
+                            <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;" loading="lazy">
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">${project.title}</h3>
+                            <p class="project-purpose">${project.purpose}</p>
+                        </div>
+                        <div class="project-details">
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <div class="info-label">المبلغ المطلوب</div>
+                                    <div class="info-value">${project.amount.toLocaleString()} ريال</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">الفائدة السنوية</div>
+                                    <div class="info-value">${project.interest}</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">مدة السداد</div>
+                                    <div class="info-value">${project.duration} شهر</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-label">الضمان</div>
+                                    <div class="info-value">${project.guarantee}</div>
+                                </div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span>${project.raised.toLocaleString()} ريال</span>
+                                    <span>${percentage}% ممول</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${percentage}%"></div>
+                                </div>
+                            </div>
+                            <div class="stripe-badge">
+                                <i class="fab fa-cc-stripe" aria-hidden="true"></i> مؤمّن عبر Stripe
+                            </div>
+                            <div class="card-actions" style="display:flex; gap:12px;">
+<a href="details.html?id=${project.id}" class="details-btn" onclick="event.stopPropagation();" aria-label="عرض تفاصيل المشروع ${project.title}">عرض التفاصيل</a>                                <button class="invest-btn" onclick="event.stopPropagation(); openPaymentModal(${project.id})">استثمر الان</button>
+                            </div>
+                        </div>
+                    `;
+                    card.addEventListener('click', (e) => {
+                        // ignore clicks that come from action buttons inside the card
+                        const target = e.target;
+                        if (target.classList.contains('invest-btn') || target.classList.contains('details-btn') || target.closest('.card-actions')) {
+                            return;
+                        }
+                        openProjectDetails(project.id);
+                    });
+                    projectsGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Initialize projects
+        renderProjects();
+
+        // Filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+                renderProjects(filter);
+            });
+        });
+
+        // Reset filters
+        function resetFilters() {
+            filterButtons.forEach(btn => {
+                if (btn.dataset.filter === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            renderProjects('all');
+        }
+
+        // Project details page
+        function openProjectDetails(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (project) {
+                const percentage = Math.round((project.raised / project.amount) * 100);
+                document.getElementById('projectDetailsContent').innerHTML = `
+                    <div class="modal-header">${project.title}</div>
+                    <div class="modal-body">
+                        <div class="modal-image">
+                            <img src="${project.image}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
+                        </div>
+                        <p class="modal-description">${project.purpose}</p>
+                        <div class="modal-details">
+                            <div class="detail-item">
+                                <div class="detail-label">المبلغ المطلوب</div>
+                                <div class="detail-value">${project.amount.toLocaleString()} ريال</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">الفائدة السنوية</div>
+                                <div class="detail-value">${project.interest}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">مدة السداد</div>
+                                <div class="detail-value">${project.duration} شهر</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">الضمان</div>
+                                <div class="detail-value">${project.guarantee}</div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">خطة السداد</h3>
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse; background: var(--gray-100); border-radius: var(--border-radius);">
+                                    <thead>
+                                        <tr style="background: var(--primary); color: white;">
+                                            <th style="padding: 12px; text-align: right;">الشهر</th>
+                                            <th style="padding: 12px; text-align: right;">المبلغ الشهري</th>
+                                            <th style="padding: 12px; text-align: right;">رأس المال</th>
+                                            <th style="padding: 12px; text-align: right;">الفائدة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1px solid var(--gray-200);">
+                                            <td style="padding: 12px; text-align: right;">1</td>
+                                            <td style="padding: 12px; text-align: right;">2,250 ريال</td>
+                                            <td style="padding: 12px; text-align: right;">1,917 ريال</td>
+                                            <td style="padding: 12px; text-align: right;">333 ريال</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid var(--gray-200);">
+                                            <td style="padding: 12px; text-align: right;">2</td>
+                                            <td style="padding: 12px; text-align: right;">2,250 ريال</td>
+                                            <td style="padding: 12px; text-align: right;">1,930 ريال</td>
+                                            <td style="padding: 12px; text-align: right;">320 ريال</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px; text-align: right;">...</td>
+                                            <td style="padding: 12px; text-align: right;">...</td>
+                                            <td style="padding: 12px; text-align: right;">...</td>
+                                            <td style="padding: 12px; text-align: right;">...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">المستثمرون الحاليون</h3>
+                            <div class="investors-list">
+                                <div class="investor-item">
+                                    <div class="investor-name">سارة ع.</div>
+                                    <div class="investor-amount">5,000 ريال</div>
+                                </div>
+                                <div class="investor-item">
+                                    <div class="investor-name">محمد أ.</div>
+                                    <div class="investor-amount">3,000 ريال</div>
+                                </div>
+                                <div class="investor-item">
+                                    <div class="investor-name">علي خ.</div>
+                                    <div class="investor-amount">2,500 ريال</div>
+                                </div>
+                                <div class="investor-item">
+                                    <div class="investor-name">وآخرون</div>
+                                    <div class="investor-amount">29,500 ريال</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3 class="modal-section-title">أسئلة مالك المشروع</h3>
+                            <div class="questions-list">
+                                <div class="question-item">
+                                    <div class="question-text">ما هو هدف مشروعك؟</div>
+                                    <div class="question-answer">هدف المشروع هو توفير منتجات زراعية عضوية بأسعار معقولة للمجتمع المحلي.</div>
+                                </div>
+                                <div class="question-item">
+                                    <div class="question-text">كيف ستستخدم التمويل؟</div>
+                                    <div class="question-answer">سيتم استخدام التمويل لشراء معدات الري الذكية وتأجير الأرض وتوظيف العمالة.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="risk-warning">
+                            <strong>تنبيه المخاطر:</strong> قد يتأثر المشروع بعوامل خارجية مثل التغيرات المناخية أو تقلبات السوق. نوصي بالاستثمار فقط بجزء من رأس المال الذي تستطيع تحمل خسارته.
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="openPaymentModal(${projectId})">
+                            استثمر الآن عبر Stripe
+                        </button>
+                    </div>
+                `;
+                document.getElementById('projectModal').style.display = 'flex';
+            }
+        }
+
+        // Payment modal
+        function openPaymentModal(projectId) {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Process payment
+        function processPayment() {
+            alert('تمت معالجة طلبك بنجاح! سيتم تحويلك إلى صفحة تأكيد.');
+            closePaymentModal();
+            closeProjectModal();
+
+            // Show success notification
+            const notification = document.createElement('div');
+            notification.innerHTML = '<i class="fas fa-check-circle" aria-hidden="true"></i> 🎉 تم تمويل مشروع "مزرعة عضوية" بنسبة 82%!';
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                color: white;
+                padding: 16px 24px;
+                border-radius: 16px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                z-index: 1500;
+                transform: translateX(120%);
+                transition: transform 0.3s ease;
+            `;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.transform = 'translateX(120%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Apply project modal
+        const applyBtns = document.querySelectorAll('#applyProjectBtn, #applyProjectBtn2');
+        applyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('applyModal').style.display = 'flex';
+            });
+        });
+
+        function closeApplyModal() {
+            document.getElementById('applyModal').style.display = 'none';
+        }
+
+        // User type modal
+        window.addEventListener('load', function () {
+            if (!localStorage.getItem('userType')) {
+                document.getElementById('userTypeModal').style.display = 'block';
+            }
+        });
+
+        function selectUserType(type) {
+            localStorage.setItem('userType', type);
+            closeUserTypeModal();
+        }
+
+        function closeUserTypeModal() {
+            document.getElementById('userTypeModal').style.display = 'none';
+        }
+
+        // Chat widget
+        function openChatWidget() {
+            const chatWidget = document.getElementById('chatWidget');
+            chatWidget.classList.add('show');
+            setTimeout(() => {
+                document.getElementById('chatBody').classList.add('show');
+            }, 300);
+        }
+
+        document.getElementById('chatWidgetBtn').addEventListener('click', openChatWidget);
+
+        function toggleChatBody() {
+            const chatBody = document.getElementById('chatBody');
+            chatBody.classList.toggle('show');
+        }
+
+        function selectChatOption(option) {
+            let message = '';
+            switch (option) {
+                case 'invest':
+                    message = 'رائع! يمكنك البدء بالاستثمار من خلال النقر على زر "ابدأ الاستثمار الآن" في الأعلى.';
+                    break;
+                case 'loan':
+                    message = 'ممتاز! يمكنك التقديم على قرض من خلال النقر على زر "قدّم مشروعك" في القسم الرئيسي.';
+                    break;
+                case 'help':
+                    message = 'يمكنك زيارة مركز المساعدة في القائمة العلوية للحصول على الدعم الكامل.';
+                    break;
+            }
+            alert(message);
+        }
+
+        // Show chat widget after 5 seconds
+        setTimeout(openChatWidget, 5000);
+
+        // Testimonials slider
+        let currentSlide = 0;
+        const slider = document.getElementById('testimonialsSlider');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const totalSlides = 3;
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+        setInterval(nextSlide, 5000);
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function (event) {
+            const modals = ['projectModal', 'paymentModal', 'applyModal', 'userTypeModal'];
+            modals.forEach(modalId => {
+                const modal = document.getElementById(modalId);
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+
+        // Language switch
+        const langToggle = document.querySelector('.lang-toggle');
+        const langMenu = document.querySelector('.lang-menu');
+        const langOptions = document.querySelectorAll('.lang-option');
+        langToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle('show');
+        });
+        document.addEventListener('click', (e) => {
+            if (!langToggle.contains(e.target) && !langMenu.contains(e.target)) {
+                langMenu.classList.remove('show');
+            }
+        });
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                const lang = option.dataset.lang;
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                langMenu.classList.remove('show');
+            });
+        });
+
+        // Make project cards clickable for details
+        document.querySelectorAll('.project-card').forEach((card, index) => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('invest-btn')) {
+                    openProjectDetails(projects[index].id);
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        (function () {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileClose = document.getElementById('mobileMenuClose');
+
+            if (!mobileToggle || !mobileMenu) return;
+
+            function openMenu() {
+                mobileMenu.classList.add('show');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('show');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            mobileToggle.addEventListener('click', openMenu);
+            mobileClose && mobileClose.addEventListener('click', closeMenu);
+
+            // Close when clicking outside content
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) closeMenu();
+            });
+
+            // Close when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+        })();
+
+        // Footer accordion for small screens
+        (function () {
+            const mq = () => window.innerWidth <= 768;
+            const titles = document.querySelectorAll('.footer-column .footer-title');
+            if (!titles || titles.length === 0) return;
+
+            function collapseAll() {
+                titles.forEach(t => {
+                    const col = t.closest('.footer-column');
+                    if (col) col.classList.remove('active');
+                    t.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            function onTitleToggle(e) {
+                if (!mq()) return; // only operate on small screens
+                const t = e.currentTarget;
+                const col = t.closest('.footer-column');
+                if (!col) return;
+                const isActive = col.classList.contains('active');
+                if (isActive) {
+                    col.classList.remove('active');
+                    t.setAttribute('aria-expanded', 'false');
+                } else {
+                    col.classList.add('active');
+                    t.setAttribute('aria-expanded', 'true');
+                }
+            }
+
+            titles.forEach(t => {
+                t.setAttribute('role', 'button');
+                t.setAttribute('tabindex', '0');
+                t.setAttribute('aria-expanded', 'false');
+                t.addEventListener('click', onTitleToggle);
+                t.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter' || ev.key === ' ') {
+                        ev.preventDefault();
+                        onTitleToggle({ currentTarget: t });
+                    }
+                });
+            });
+
+            // Collapse all on load for small screens
+            if (mq()) collapseAll();
+
+            // Re-collapse when resizing from large -> small
+            window.addEventListener('resize', () => {
+                if (mq()) collapseAll();
+            });
+        })();
+
+        // FAQ toggle (desktop & mobile)
+        (function () {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            if (!faqQuestions || faqQuestions.length === 0) return;
+
+            faqQuestions.forEach(q => {
+                // ensure keyboard/focus accessibility
+                q.setAttribute('role', 'button');
+                q.setAttribute('tabindex', '0');
+                q.setAttribute('aria-expanded', 'false');
+
+                // find the corresponding answer (assumes structure: .faq-question followed by .faq-answer)
+                const item = q.closest('.faq-item');
+                const answer = item ? item.querySelector('.faq-answer') : null;
+                if (answer) answer.setAttribute('aria-hidden', 'true');
+
+                // click toggles open/close and updates ARIA
+                q.addEventListener('click', () => {
+                    if (!item) return;
+                    item.classList.toggle('active');
+                    const isActive = item.classList.contains('active');
+                    q.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                    if (answer) answer.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                });
+
+                // make the chevron icon clickable too (if present)
+                const chevron = q.querySelector('.faq-toggle');
+                if (chevron) chevron.addEventListener('click', (ev) => { ev.stopPropagation(); q.click(); });
+
+                // keyboard support
+                q.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter' || ev.key === ' ') {
+                        ev.preventDefault();
+                        q.click();
+                    }
+                });
+            });
+        })();
+
+        // Auth modal handlers
+        (function () {
+            const authModal = document.getElementById('authModal');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabLogin = document.getElementById('authTabLogin');
+            const tabRegister = document.getElementById('authTabRegister');
+
+            function showAuthTab(tab) {
+                if (tab === 'register') {
+                    tabRegister.classList.add('active');
+                    tabLogin.classList.remove('active');
+                    registerForm.style.display = '';
+                    loginForm.style.display = 'none';
+                    registerForm.querySelector('input')?.focus();
+                } else {
+                    tabLogin.classList.add('active');
+                    tabRegister.classList.remove('active');
+                    loginForm.style.display = '';
+                    registerForm.style.display = 'none';
+                    loginForm.querySelector('input')?.focus();
+                }
+            }
+
+            window.openAuthModal = function (tab = 'register') {
+                if (!authModal) return;
+                authModal.style.display = 'flex';
+                authModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                showAuthTab(tab);
+            };
+
+            window.closeAuthModal = function () {
+                if (!authModal) return;
+                authModal.style.display = 'none';
+                authModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            };
+
+            // wire tab buttons
+            tabLogin && tabLogin.addEventListener('click', () => showAuthTab('login'));
+            tabRegister && tabRegister.addEventListener('click', () => showAuthTab('register'));
+
+            // quick links inside forms
+            const toRegister = document.getElementById('toRegister');
+            const toLogin = document.getElementById('toLogin');
+            toRegister && toRegister.addEventListener('click', (e) => { e.preventDefault(); showAuthTab('register'); });
+            toLogin && toLogin.addEventListener('click', (e) => { e.preventDefault(); showAuthTab('login'); });
+
+            // open links from header/mobile
+            document.querySelectorAll('.open-auth').forEach(a => {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tab = a.dataset.tab || 'register';
+                    openAuthModal(tab);
+                });
+            });
+
+            // forms: simple stub handlers (prevent submit and close modal)
+            loginForm && loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // TODO: connect real auth flow
+                closeAuthModal();
+                alert('تم تسجيل الدخول (محاكاة)');
+            });
+            registerForm && registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // basic client-side validation
+                const name = document.getElementById('regName')?.value.trim();
+                const email = document.getElementById('regEmail')?.value.trim();
+                const phone = document.getElementById('regPhone')?.value.trim();
+                const pass = document.getElementById('regPassword')?.value || '';
+                const pass2 = document.getElementById('regPassword2')?.value || '';
+
+                if (!name) {
+                    alert('يرجى إدخال الاسم الكامل');
+                    document.getElementById('regName')?.focus();
+                    return;
+                }
+                if (!email) {
+                    alert('يرجى إدخال البريد الإلكتروني');
+                    document.getElementById('regEmail')?.focus();
+                    return;
+                }
+                if (!phone) {
+                    alert('يرجى إدخال رقم الجوال');
+                    document.getElementById('regPhone')?.focus();
+                    return;
+                }
+                if (pass.length < 6) {
+                    alert('يجب أن تتكون كلمة المرور من 6 أحرف على الأقل');
+                    document.getElementById('regPassword')?.focus();
+                    return;
+                }
+                if (pass !== pass2) {
+                    alert('كلمتا المرور غير متطابقتين');
+                    document.getElementById('regPassword2')?.focus();
+                    return;
+                }
+
+                // TODO: connect real registration flow & validation (e.g., API call, SMS verification)
+                closeAuthModal();
+                alert('تم إنشاء الحساب (محاكاة). سيتم إرسال رمز تحقق إلى: ' + phone);
+            });
+
+            // close on Escape
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape') closeAuthModal();
+            });
+
+            // close when clicking outside content
+            authModal && authModal.addEventListener('click', (e) => {
+                if (e.target === authModal) closeAuthModal();
+            });
+        })();
+    </script>
+</body>
+
+</html>
